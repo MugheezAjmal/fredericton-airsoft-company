@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop — Fredericton Airsoft Company Inc.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root{--red:#d1432a;--red-dark:#a8341f;--red-glow:rgba(209,67,42,0.2);--olive-dark:#0a0c07;--olive-base:#12160c;--olive-mid:#1a2210;--olive-card:#202a12;--olive-border:#323f20;--olive-hover:#46582e;--sand:#c4a57b;--sand-dim:#8a7258;--off-white:#ede9e0;--muted:#5a5a4a}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:'Inter',sans-serif;background:var(--olive-dark);color:var(--off-white);line-height:1.75;overflow-x:hidden}
+    h1,h2,h3,h4{font-family:'Oswald',sans-serif;text-transform:uppercase;line-height:1.05}
+    a{text-decoration:none;color:inherit}
+    .container{max-width:1280px;margin:0 auto;padding:0 32px}
+    nav{position:sticky;top:0;z-index:50;height:64px;background:rgba(10,12,7,0.94);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.05)}
+    .nav-inner{height:100%;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .nav-logo{height:44px;width:auto;object-fit:contain;flex-shrink:0;transition:opacity 0.2s}.nav-logo:hover{opacity:0.85}
+    .nav-links{display:flex;align-items:center;gap:24px;flex:1;justify-content:center}
+    .nav-link{font-family:'Oswald',sans-serif;font-size:0.75rem;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:rgba(237,233,224,0.6);position:relative;padding:4px 0;transition:color 0.2s;white-space:nowrap}
+    .nav-link::after{content:'';position:absolute;bottom:-1px;left:0;width:0;height:1px;background:var(--red);transition:width 0.25s ease}
+    .nav-link:hover,.nav-link.active{color:var(--off-white)}.nav-link:hover::after,.nav-link.active::after{width:100%}
+    .btn-nav{font-family:'Oswald',sans-serif;font-size:0.72rem;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;background:var(--red);color:#fff;padding:9px 20px;white-space:nowrap;flex-shrink:0;clip-path:polygon(0 0,calc(100% - 6px) 0,100% 6px,100% 100%,6px 100%,0 calc(100% - 6px));transition:background 0.2s,transform 0.15s cubic-bezier(0.34,1.56,0.64,1)}
+    .btn-nav:hover{background:var(--red-dark);transform:translateY(-1px)}
+    .hamburger{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:6px}
+    .hamburger span{display:block;width:22px;height:1.5px;background:var(--off-white)}
+    #mobile-menu{display:none;position:fixed;inset:0;z-index:99;background:var(--olive-dark);flex-direction:column;align-items:center;justify-content:center;gap:32px}
+    #mobile-menu.open{display:flex}
+    .mob-link{font-family:'Oswald',sans-serif;font-size:2rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--off-white);transition:color 0.15s}.mob-link:hover{color:var(--red)}
+    #close-menu{position:absolute;top:20px;right:28px;background:none;border:none;color:var(--off-white);font-size:1.5rem;cursor:pointer;font-family:'Oswald',sans-serif}
+    .btn-red{display:inline-flex;align-items:center;gap:8px;background:var(--red);color:#fff;font-family:'Oswald',sans-serif;font-size:0.82rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;padding:13px 28px;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px));transition:background 0.2s,transform 0.15s cubic-bezier(0.34,1.56,0.64,1);cursor:pointer;border:none}
+    .btn-red:hover{background:var(--red-dark);transform:translateY(-2px)}
+    .slabel{font-family:'Oswald',sans-serif;font-size:0.65rem;font-weight:500;letter-spacing:0.32em;text-transform:uppercase;color:var(--red);display:flex;align-items:center;gap:10px;margin-bottom:16px}
+    .slabel::before{content:'';width:24px;height:1px;background:var(--red);flex-shrink:0}
+    .page-hero{position:relative;min-height:40vh;background:radial-gradient(ellipse 100% 100% at 50% 0%,rgba(38,54,18,0.55) 0%,transparent 60%),var(--olive-dark);display:flex;align-items:flex-end;overflow:hidden}
+    .page-hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.012) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.012) 1px,transparent 1px);background-size:56px 56px}
+    .page-hero-content{position:relative;z-index:2;padding:64px 0;width:100%}
+    .sec-pad{padding:80px 0}.sec-pad-sm{padding:56px 0}
+    .sec-dark{background:var(--olive-dark)}.sec-base{background:var(--olive-base)}.sec-mid{background:var(--olive-mid)}
+
+    /* PRODUCT GRID */
+    .product-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    .product-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .product-grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+    .product-card{background:var(--olive-card);border:1px solid var(--olive-border);overflow:hidden;display:flex;flex-direction:column;transition:border-color 0.2s,transform 0.2s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.2s}
+    .product-card:hover{border-color:var(--olive-hover);transform:translateY(-3px);box-shadow:0 8px 28px rgba(0,0,0,0.4),0 0 16px var(--red-glow)}
+    .product-photo{aspect-ratio:1;background:var(--olive-mid);position:relative;overflow:hidden}
+    .product-photo img{width:100%;height:100%;object-fit:cover;display:block}
+    .product-info{padding:16px;border-top:1px solid var(--olive-border)}
+    .product-weight{font-family:'Oswald',sans-serif;font-size:0.62rem;letter-spacing:0.26em;text-transform:uppercase;color:var(--sand-dim);margin-bottom:4px}
+    .product-name{font-family:'Oswald',sans-serif;font-size:0.92rem;font-weight:600;text-transform:uppercase;color:var(--off-white);line-height:1.2;margin-bottom:8px}
+    .product-price{font-family:'Oswald',sans-serif;font-size:0.95rem;font-weight:700;color:var(--off-white);margin-bottom:10px}
+    .product-cta{display:block;width:100%;padding:9px 0;background:transparent;border:1px solid var(--olive-border);color:rgba(237,233,224,0.65);font-family:'Oswald',sans-serif;font-size:0.65rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;text-align:center;transition:background 0.2s,border-color 0.2s,color 0.2s;cursor:pointer}
+    .product-cta:hover{background:var(--red);border-color:var(--red);color:#fff}
+    .product-cta:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+
+    /* CATEGORY HEADER */
+    .cat-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:28px;padding-bottom:16px;border-bottom:1px solid var(--olive-border)}
+
+    /* TRACER BADGE */
+    .tracer-badge{display:inline-flex;padding:2px 8px;background:rgba(196,165,123,0.12);border:1px solid rgba(196,165,123,0.25);margin-left:8px}
+    .tracer-text{font-family:'Oswald',sans-serif;font-size:0.55rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--sand-dim)}
+
+    /* PICKUP BANNER */
+    .pickup-banner{background:var(--olive-base);border-top:1px solid var(--olive-border);border-bottom:1px solid var(--olive-border);padding:16px 0}
+    .pickup-inner{display:flex;align-items:center;justify-content:center;gap:32px;text-align:center;flex-wrap:wrap}
+
+    footer{background:var(--olive-base);border-top:1px solid var(--olive-border)}
+    .footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1.2fr;gap:64px;padding:64px 0 48px}
+    .footer-link{font-family:'Oswald',sans-serif;font-size:0.75rem;font-weight:400;letter-spacing:0.12em;text-transform:uppercase;color:rgba(237,233,224,0.5);display:block;padding:5px 0;transition:color 0.2s}
+    .footer-link:hover{color:var(--off-white)}
+    .footer-bottom{border-top:1px solid var(--olive-border);padding:20px 0;display:flex;justify-content:space-between;align-items:center}
+    .rainbow-stripe{height:4px;background:linear-gradient(to right,#e40303 0%,#e40303 16.66%,#ff8c00 16.66%,#ff8c00 33.33%,#ffed00 33.33%,#ffed00 50%,#008026 50%,#008026 66.66%,#004dff 66.66%,#004dff 83.33%,#750787 83.33%,#750787 100%)}
+
+    @media(max-width:1024px){.product-grid{grid-template-columns:repeat(3,1fr)}}
+    @media(max-width:768px){.nav-links,.btn-nav{display:none}.hamburger{display:flex}.product-grid,.product-grid-3{grid-template-columns:repeat(2,1fr)}.footer-grid{grid-template-columns:1fr;gap:32px}.pickup-inner{flex-direction:column;gap:16px}}
+    @media(max-width:480px){.product-grid,.product-grid-3,.product-grid-2{grid-template-columns:1fr}.container{padding:0 20px}}
+  </style>
+</head>
+<body>
+<div id="mobile-menu" role="dialog">
+  <button id="close-menu" onclick="document.getElementById('mobile-menu').classList.remove('open')">✕ CLOSE</button>
+  <a href="index.html" class="mob-link">Home</a><a href="the-field.html" class="mob-link">Field</a>
+  <a href="tips.html" class="mob-link">Tips</a><a href="events.html" class="mob-link">Events</a>
+  <a href="rental-kits.html" class="mob-link">Rental Kits</a><a href="shop.html" class="mob-link">Shop</a>
+  <a href="private-events.html" class="mob-link">Private Events</a>
+</div>
+<nav>
+  <div class="container nav-inner">
+    <a href="index.html"><img src="Assets/Fredericton Airsoft Company Logo.JPG" alt="FAC Logo" class="nav-logo"></a>
+    <div class="nav-links">
+      <a href="index.html" class="nav-link">Home</a><a href="the-field.html" class="nav-link">Field</a>
+      <a href="tips.html" class="nav-link">Tips</a><a href="events.html" class="nav-link">Events</a>
+      <a href="rental-kits.html" class="nav-link">Rental Kits</a><a href="shop.html" class="nav-link active">Shop</a>
+      <a href="private-events.html" class="nav-link">Private Events</a>
+    </div>
+    <a href="https://www.facinc.ca/s/shop" class="btn-nav" target="_blank" rel="noopener">Full Shop →</a>
+    <button class="hamburger" onclick="document.getElementById('mobile-menu').classList.add('open')"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-grid"></div>
+  <div class="page-hero-content">
+    <div class="container">
+      <div class="slabel">Online Store</div>
+      <h1 style="font-size:clamp(2.5rem,6vw,5rem);font-weight:700;letter-spacing:-0.02em;color:var(--off-white);max-width:700px;">
+        Mobile Shop<br><span style="color:var(--sand);">at Events</span>
+      </h1>
+      <p style="color:rgba(237,233,224,0.55);font-size:0.9rem;margin-top:14px;max-width:500px;">
+        Buy online and pick up at the field. No shipping — all orders collected at the event.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- PICKUP BANNER -->
+<div class="pickup-banner">
+  <div class="container">
+    <div class="pickup-inner">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div style="width:8px;height:8px;background:var(--red);clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)"></div>
+        <span style="font-family:'Oswald',sans-serif;font-size:0.75rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(237,233,224,0.65);">Pick up at the field on event day</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div style="width:8px;height:8px;background:var(--red);clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)"></div>
+        <span style="font-family:'Oswald',sans-serif;font-size:0.75rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(237,233,224,0.65);">No shipping available</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div style="width:8px;height:8px;background:var(--red);clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)"></div>
+        <span style="font-family:'Oswald',sans-serif;font-size:0.75rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(237,233,224,0.65);">No cash · Debit/Credit/Apple Pay/Google Pay</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BBs SECTION -->
+<section class="sec-dark sec-pad" id="bbs">
+  <div class="container">
+    <div class="cat-header">
+      <div>
+        <div class="slabel">Ammunition</div>
+        <h2 style="font-size:clamp(1.6rem,2.8vw,2.4rem);font-weight:700;letter-spacing:-0.02em;color:var(--off-white);">BBs</h2>
+      </div>
+      <a href="https://www.facinc.ca/s/shop" style="font-family:'Oswald',sans-serif;font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--sand-dim);border-bottom:1px solid rgba(196,165,123,0.2);padding-bottom:2px;transition:color 0.2s" target="_blank" rel="noopener" onmouseover="this.style.color='var(--sand)'" onmouseout="this.style.color='var(--sand-dim)'">Shop All →</a>
+    </div>
+
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="product-photo"><img src="https://placehold.co/300x300/202a12/323f20?text=.20g" alt=".20g BBs"></div>
+        <div class="product-info">
+          <div class="product-weight">BLS Standard</div>
+          <div class="product-name">.20g BBs</div>
+          <a href="https://www.facinc.ca/product/-20g-bls-bbs/28" class="product-cta" target="_blank" rel="noopener">Buy Now →</a>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-photo"><img src="https://placehold.co/300x300/202a12/323f20?text=.25g" alt=".25g BBs"></div>
+        <div class="product-info">
+          <div class="product-weight">BLS Standard</div>
+          <div class="product-name">.25g BBs</div>
+          <a href="https://www.facinc.ca/product/-25g-bls/ITLSM7KAFJJWFASC3MH3GY5J" class="product-cta" target="_blank" rel="noopener">Buy Now →</a>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-photo"><img src="https://placehold.co/300x300/202a12/323f20?text=.28g" alt=".28g BBs"></div>
+        <div class="product-info">
+          <div class="product-weight">BLS Standard</div>
+          <div class="product-name">.28g BBs</div>
+          <a href="https://www.facinc.ca/product/-28g-bls/121" class="product-cta" target="_blank" rel="noopener">Buy Now →</a>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-photo"><img src="https://placehold.co/300x300/202a12/323f20?text=.30g" alt=".30g BBs"></div>
+        <div class="product-info">
+          <div class="product-weight">BLS Standard</div>
+          <div class="product-name">.30g BBs</div>
+          <a href="https://www.facinc.ca/product/-30g-bls/120" class="product-cta" target="_blank" rel="noopener">Buy Now →</a>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-photo"><img src="https://placehold.co/300x300/202a12/323f20?text=.32g" alt=".32g BBs"></div>
+        <div class="product-info">
+          <div class="product-weight">BLS Standard</div>
+          <div class="product-name">.32g BBs</div>
+          <a href="https://www.facinc.ca/product/-32g-bls/119" class="product-cta" target="_blank" rel="noopener">Buy Now →</a>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-photo"><img src="https://placehold.co/300x300/202a12/323f20?text=.40g" alt=".40g BBs"></div>
+        <div class="product-info">
+          <div class="product-weight">BLS Heavy</div>
+          <div class="product-name">.40g BBs</div>
+          <a href="https://www.facinc.ca/product/-40g-bls/51" class="product-cta" target="_blank" rel="noopener">Buy Now →</a>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-photo"><img src="https://placehold.co/300x300/202a12/323f20?text=.43g" alt=".43g BBs"></div>
+        <div class="product-info">
+          <div class="product-weight">BLS Heavy</div>
+          <div class="product-name">.43g BBs</div>
+          <a href="https://www.facinc.ca/product/-43g-bls/53" class="product-cta" target="_blank" rel="noopener">Buy Now →</a>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-photo"><img src="https://placehold.co/300x300/202a12/323f20?text=.48g" alt=".48g BBs"></div>
+        <div class="product-info">
+          <div class="product-weight">BLS Heavy</div>
+          <div class="product-name">.48g BBs</div>
+          <a href="https://www.facinc.ca/product/-48g-bls/54" class="product-cta" target="_blank" rel="noopener">Buy Now →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tracer BBs subsection -->
+    <div style="margin-top:40px;padding-top:32px;border-top:1px solid var(--olive-border);">
+      <h3 style="font-size:1.2rem;font-weight:600;letter-spacing:0.02em;color:var(--sand);margin-bottom:24px;">
+        Tracer BBs <span style="font-size:0.7rem;color:var(--sand-dim);font-weight:400;letter-spacing:0.15em;text-transform:uppercase;font-family:'Inter',sans-serif;margin-left:8px;">Glow in the dark · Night Games</span>
+      </h3>
+      <div class="product-grid">
+        <div class="product-card">
+          <div class="product-photo"><img src="https://placehold.co/300x300/202a12/2e4020?text=.12g+Tracer" alt=".12g Tracer Green BBs"></div>
+          <div class="product-info">
+            <div class="product-weight">.12g · Green Tracer</div>
+            <div class="product-name">Tracer BBs <span class="tracer-badge"><span class="tracer-text">Green</span></span></div>
+            <a href="https://www.facinc.ca/product/-12g-tracer-green-bls/EVXSXOWKRETWL7W2IFLZE3YR" class="product-cta" target="_blank" rel="noopener">Buy Now →</a>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-photo"><img src="https://placehold.co/300x300/202a12/1a2f3a?text=.25g+Tracer" alt=".25g Tracer Blue BBs"></div>
+          <div class="product-info">
+            <div class="product-weight">.25g · Blue Tracer</div>
+            <div class="product-name">Tracer BBs <span class="tracer-badge" style="border-color:rgba(100,150,200,0.3)"><span class="tracer-text" style="color:#7eb0d0">Blue</span></span></div>
+            <a href="https://www.facinc.ca/product/-25g-tracer-blue-bls/RYE7IOF3CPRAWSCQ7C67HELC" class="product-cta" target="_blank" rel="noopener">Buy Now →</a>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-photo"><img src="https://placehold.co/300x300/202a12/2e4020?text=.25g+Green" alt=".25g Tracer Green BBs"></div>
+          <div class="product-info">
+            <div class="product-weight">.25g · Green Tracer</div>
+            <div class="product-name">Tracer BBs <span class="tracer-badge"><span class="tracer-text">Green</span></span></div>
+            <a href="https://www.facinc.ca/product/-25g-tracer-green-bls/122" class="product-cta" target="_blank" rel="noopener">Buy Now →</a>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="product-photo"><img src="https://placehold.co/300x300/202a12/3a1a1a?text=.25g+Red" alt=".25g Tracer Red BBs"></div>
+          <div class="product-info">
+            <div class="product-weight">.25g · Red Tracer</div>
+            <div class="product-name">Tracer BBs <span class="tracer-badge" style="border-color:rgba(209,67,42,0.3)"><span class="tracer-text" style="color:var(--red)">Red</span></span></div>
+            <a href="https://www.facinc.ca/product/-25g-tracer-red-bls/KD75SA6QHZOS2Y4UAHMY3DQC" class="product-cta" target="_blank" rel="noopener">Buy Now →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GAS SECTION -->
+<section class="sec-mid sec-pad" id="gas">
+  <div class="container">
+    <div class="cat-header">
+      <div>
+        <div class="slabel">Propellant</div>
+        <h2 style="font-size:clamp(1.6rem,2.8vw,2.4rem);font-weight:700;letter-spacing:-0.02em;color:var(--off-white);">Green Gas</h2>
+      </div>
+    </div>
+    <div class="product-grid-2" style="max-width:600px;">
+      <div class="product-card">
+        <div class="product-photo"><img src="https://placehold.co/400x400/202a12/323f20?text=Elite+Force+8oz" alt="Green Gas Elite Force 8oz"></div>
+        <div class="product-info">
+          <div class="product-weight">Elite Force · 8 oz</div>
+          <div class="product-name">Green Gas</div>
+          <div class="product-price">CAD $17.39</div>
+          <div style="font-size:0.7rem;color:var(--red);font-family:'Oswald',sans-serif;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:10px;">Low Stock</div>
+          <a href="https://www.facinc.ca/product/green-gas-elite-force-8oz/29" class="product-cta" target="_blank" rel="noopener">Buy Now →</a>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-photo"><img src="https://placehold.co/400x400/202a12/323f20?text=Ultrair+8.5oz" alt="Green Gas Ultrair 8.5oz"></div>
+        <div class="product-info">
+          <div class="product-weight">Ultrair · 8.5 oz</div>
+          <div class="product-name">Green Gas</div>
+          <div class="product-price">CAD $17.39</div>
+          <a href="https://www.facinc.ca/product/green-gas-ultrair-8-5oz/7TO24KSQOGUVGQSBKJS4BKDQ" class="product-cta" target="_blank" rel="noopener">Buy Now →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACCESSORIES / RENTAL GEAR -->
+<section class="sec-dark sec-pad" id="accessories">
+  <div class="container">
+    <div class="cat-header">
+      <div>
+        <div class="slabel">Gear</div>
+        <h2 style="font-size:clamp(1.6rem,2.8vw,2.4rem);font-weight:700;letter-spacing:-0.02em;color:var(--off-white);">Accessories &amp; Rental Gear</h2>
+      </div>
+    </div>
+    <div class="product-grid-3" style="max-width:900px;">
+      <div class="product-card">
+        <div class="product-photo"><img src="https://placehold.co/400x400/202a12/323f20?text=Mask+Rental" alt="Rental Mask"></div>
+        <div class="product-info">
+          <div class="product-weight">Individual Rental</div>
+          <div class="product-name">Mask Rental</div>
+          <div class="product-price">CAD $10.00</div>
+          <a href="https://www.facinc.ca/s/shop" class="product-cta" target="_blank" rel="noopener">Buy Now →</a>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-photo"><img src="https://placehold.co/400x400/202a12/323f20?text=Tracer+Unit" alt="Rental Tracer Unit"></div>
+        <div class="product-info">
+          <div class="product-weight">Individual Rental</div>
+          <div class="product-name">Tracer Unit</div>
+          <div class="product-price">CAD $8.70</div>
+          <a href="https://www.facinc.ca/s/shop" class="product-cta" target="_blank" rel="noopener">Buy Now →</a>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-photo"><img src="https://placehold.co/400x400/202a12/323f20?text=Grenades+%26+Patches" alt="Grenades and Patches"></div>
+        <div class="product-info">
+          <div class="product-weight">Various</div>
+          <div class="product-name">Grenades &amp; Patches</div>
+          <div style="font-size:0.78rem;color:var(--muted);margin-bottom:10px;">Smoke grenades, patches &amp; more</div>
+          <a href="https://www.facinc.ca/s/shop" class="product-cta" target="_blank" rel="noopener">Browse Shop →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA TO FULL SHOP -->
+<section class="sec-base sec-pad-sm" style="border-top:1px solid var(--olive-border);">
+  <div class="container" style="text-align:center;">
+    <div class="slabel" style="justify-content:center;margin-bottom:16px;">Square Online Store</div>
+    <h2 style="font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;letter-spacing:-0.02em;color:var(--off-white);margin-bottom:12px;">Full Product Catalogue</h2>
+    <p style="color:rgba(237,233,224,0.5);font-size:0.88rem;max-width:440px;margin:0 auto 28px;">Visit the full Square Online store for the complete product listing including all weights and variants.</p>
+    <a href="https://www.facinc.ca/s/shop" class="btn-red" target="_blank" rel="noopener">Visit Full Shop →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div><img src="Assets/Fredericton Airsoft Company Logo.JPG" alt="FAC Logo" style="height:60px;width:auto;object-fit:contain;margin-bottom:16px;"><p style="font-size:0.82rem;color:rgba(237,233,224,0.4);line-height:1.6;max-width:280px;">Real People. Real Game. Real Community.</p></div>
+      <div>
+        <div style="font-family:'Oswald',sans-serif;font-size:0.65rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;">Navigation</div>
+        <a href="index.html" class="footer-link">Home</a><a href="the-field.html" class="footer-link">The Field</a><a href="tips.html" class="footer-link">Tips for Beginners</a><a href="events.html" class="footer-link">Events</a><a href="rental-kits.html" class="footer-link">Rental Kits</a><a href="shop.html" class="footer-link">Shop</a><a href="private-events.html" class="footer-link">Private Events</a>
+      </div>
+      <div>
+        <div style="font-family:'Oswald',sans-serif;font-size:0.65rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;">Contact</div>
+        <a href="tel:15062613689" class="footer-link">1-506-261-3689</a><a href="mailto:frederictonairsoftcompany@gmail.com" class="footer-link" style="word-break:break-all;">frederictonairsoftcompany@gmail.com</a><a href="https://www.instagram.com/frederictonairsoftcompany" class="footer-link" target="_blank">@frederictonairsoftcompany</a>
+      </div>
+    </div>
+    <div class="footer-bottom"><p style="font-size:0.72rem;color:var(--muted);">© 2026 Fredericton Airsoft Company Inc.</p><p style="font-size:0.68rem;color:var(--muted);font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:0.1em;">Must be 10+ to play</p></div>
+  </div>
+  <div class="rainbow-stripe"></div>
+</footer>
+<script>
+  document.getElementById('close-menu').addEventListener('click',()=>document.getElementById('mobile-menu').classList.remove('open'));
+  document.getElementById('mobile-menu').querySelectorAll('a').forEach(l=>l.addEventListener('click',()=>document.getElementById('mobile-menu').classList.remove('open')));
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')document.getElementById('mobile-menu').classList.remove('open')});
+</script>
+</body>
+</html>

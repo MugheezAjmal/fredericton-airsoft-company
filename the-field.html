@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Field — Fredericton Airsoft Company Inc.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --red: #d1432a; --red-dark: #a8341f; --red-glow: rgba(209,67,42,0.2);
+      --olive-dark: #0a0c07; --olive-base: #12160c; --olive-mid: #1a2210;
+      --olive-card: #202a12; --olive-border: #323f20; --olive-hover: #46582e;
+      --sand: #c4a57b; --sand-dim: #8a7258; --off-white: #ede9e0; --muted: #5a5a4a;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--olive-dark); color: var(--off-white); line-height: 1.75; overflow-x: hidden; }
+    h1,h2,h3,h4 { font-family: 'Oswald', sans-serif; text-transform: uppercase; line-height: 1.05; }
+    a { text-decoration: none; color: inherit; }
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+
+    nav { position: sticky; top: 0; z-index: 50; height: 64px; background: rgba(10,12,7,0.94); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .nav-inner { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .nav-logo { height: 44px; width: auto; object-fit: contain; flex-shrink: 0; transition: opacity 0.2s; }
+    .nav-logo:hover { opacity: 0.85; }
+    .nav-links { display: flex; align-items: center; gap: 24px; flex: 1; justify-content: center; }
+    .nav-link { font-family: 'Oswald', sans-serif; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(237,233,224,0.6); position: relative; padding: 4px 0; transition: color 0.2s; white-space: nowrap; }
+    .nav-link::after { content: ''; position: absolute; bottom: -1px; left: 0; width: 0; height: 1px; background: var(--red); transition: width 0.25s ease; }
+    .nav-link:hover, .nav-link.active { color: var(--off-white); }
+    .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+    .btn-nav { font-family: 'Oswald', sans-serif; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; background: var(--red); color: #fff; padding: 9px 20px; white-space: nowrap; flex-shrink: 0; clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px)); transition: background 0.2s, transform 0.15s cubic-bezier(0.34,1.56,0.64,1); }
+    .btn-nav:hover { background: var(--red-dark); transform: translateY(-1px); }
+    .hamburger { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; padding: 6px; }
+    .hamburger span { display: block; width: 22px; height: 1.5px; background: var(--off-white); }
+
+    #mobile-menu { display: none; position: fixed; inset: 0; z-index: 99; background: var(--olive-dark); flex-direction: column; align-items: center; justify-content: center; gap: 32px; }
+    #mobile-menu.open { display: flex; }
+    .mob-link { font-family: 'Oswald', sans-serif; font-size: 2rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--off-white); transition: color 0.15s; }
+    .mob-link:hover { color: var(--red); }
+    #close-menu { position: absolute; top: 20px; right: 28px; background: none; border: none; color: var(--off-white); font-size: 1.5rem; cursor: pointer; font-family: 'Oswald', sans-serif; letter-spacing: 0.1em; }
+
+    .btn-red { display: inline-flex; align-items: center; gap: 8px; background: var(--red); color: #fff; font-family: 'Oswald', sans-serif; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; padding: 13px 28px; clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px)); transition: background 0.2s, transform 0.15s cubic-bezier(0.34,1.56,0.64,1); cursor: pointer; border: none; }
+    .btn-red:hover { background: var(--red-dark); transform: translateY(-2px); }
+    .btn-outline { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: var(--off-white); font-family: 'Oswald', sans-serif; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; padding: 12px 28px; border: 1px solid rgba(237,233,224,0.28); clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px)); transition: border-color 0.2s, background 0.2s, transform 0.15s cubic-bezier(0.34,1.56,0.64,1); cursor: pointer; }
+    .btn-outline:hover { border-color: var(--off-white); background: rgba(255,255,255,0.05); transform: translateY(-2px); }
+    .btn-sand { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: var(--sand); font-family: 'Oswald', sans-serif; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; padding: 11px 24px; border: 1px solid rgba(196,165,123,0.3); clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px)); transition: border-color 0.2s, background 0.2s, transform 0.15s cubic-bezier(0.34,1.56,0.64,1); cursor: pointer; }
+    .btn-sand:hover { border-color: var(--sand); background: rgba(196,165,123,0.08); transform: translateY(-2px); }
+
+    .slabel { font-family: 'Oswald', sans-serif; font-size: 0.65rem; font-weight: 500; letter-spacing: 0.32em; text-transform: uppercase; color: var(--red); display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+    .slabel::before { content: ''; width: 24px; height: 1px; background: var(--red); flex-shrink: 0; }
+
+    /* PAGE HERO */
+    .page-hero {
+      position: relative;
+      min-height: 52vh;
+      background:
+        radial-gradient(ellipse 100% 100% at 50% 0%, rgba(38,54,18,0.6) 0%, transparent 60%),
+        var(--olive-dark);
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+    .page-hero-grid {
+      position: absolute; inset: 0;
+      background-image: linear-gradient(rgba(255,255,255,0.012) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.012) 1px, transparent 1px);
+      background-size: 56px 56px;
+    }
+    .page-hero-photo {
+      position: absolute; inset: 0;
+      overflow: hidden;
+    }
+    .page-hero-photo img { width: 100%; height: 100%; object-fit: cover; opacity: 0.35; }
+    .page-hero-photo::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, var(--olive-dark) 0%, rgba(10,12,7,0.5) 50%, rgba(10,12,7,0.3) 100%); }
+    .page-hero-content { position: relative; z-index: 2; padding: 64px 0; }
+
+    .stats-strip { background: var(--olive-base); border-bottom: 1px solid var(--olive-border); }
+    .stats-inner { display: flex; }
+    .stat-item { flex: 1; padding: 24px 16px; text-align: center; border-right: 1px solid var(--olive-border); }
+    .stat-item:last-child { border-right: none; }
+    .stat-num { font-family: 'Oswald', sans-serif; font-size: 2.2rem; font-weight: 700; letter-spacing: -0.03em; line-height: 1; color: var(--off-white); display: block; }
+    .stat-lbl { font-family: 'Oswald', sans-serif; font-size: 0.62rem; letter-spacing: 0.26em; text-transform: uppercase; color: var(--sand-dim); margin-top: 6px; display: block; }
+
+    .sec-pad { padding: 96px 0; }
+    .sec-dark { background: var(--olive-dark); }
+    .sec-base { background: var(--olive-base); }
+    .sec-mid { background: var(--olive-mid); }
+
+    .zone-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .zone-card { background: var(--olive-card); border: 1px solid var(--olive-border); padding: 24px; position: relative; overflow: hidden; transition: border-color 0.2s, transform 0.2s cubic-bezier(0.34,1.56,0.64,1); }
+    .zone-card:hover { border-color: var(--olive-hover); transform: translateY(-2px); }
+    .zone-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--red); transform: scaleX(0); transform-origin: left; transition: transform 0.3s ease; }
+    .zone-card:hover::before { transform: scaleX(1); }
+
+    .address-card { background: var(--olive-card); border: 1px solid var(--olive-border); padding: 32px; position: relative; }
+    .address-card::before { content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 3px; background: var(--red); }
+
+    .download-card { display: flex; align-items: center; gap: 16px; background: var(--olive-card); border: 1px solid var(--olive-border); padding: 20px 24px; transition: border-color 0.2s, transform 0.2s cubic-bezier(0.34,1.56,0.64,1); cursor: pointer; }
+    .download-card:hover { border-color: var(--olive-hover); transform: translateY(-2px); }
+
+    footer { background: var(--olive-base); border-top: 1px solid var(--olive-border); }
+    .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1.2fr; gap: 64px; padding: 64px 0 48px; }
+    .footer-link { font-family: 'Oswald', sans-serif; font-size: 0.75rem; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(237,233,224,0.5); display: block; padding: 5px 0; transition: color 0.2s; }
+    .footer-link:hover { color: var(--off-white); }
+    .footer-bottom { border-top: 1px solid var(--olive-border); padding: 20px 0; display: flex; justify-content: space-between; align-items: center; }
+    .rainbow-stripe { height: 4px; background: linear-gradient(to right, #e40303 0%, #e40303 16.66%, #ff8c00 16.66%, #ff8c00 33.33%, #ffed00 33.33%, #ffed00 50%, #008026 50%, #008026 66.66%, #004dff 66.66%, #004dff 83.33%, #750787 83.33%, #750787 100%); }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .fade-up { animation: fadeUp 0.7s cubic-bezier(0.34,1.56,0.64,1) both; }
+    .d1{animation-delay:.05s} .d2{animation-delay:.15s} .d3{animation-delay:.25s} .d4{animation-delay:.35s}
+
+    @media (max-width: 768px) {
+      .nav-links, .btn-nav { display: none; }
+      .hamburger { display: flex; }
+      .zone-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+      .stats-inner { flex-wrap: wrap; }
+      .stat-item { flex: 0 0 50%; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="mobile-menu" role="dialog">
+  <button id="close-menu" onclick="document.getElementById('mobile-menu').classList.remove('open')">✕ CLOSE</button>
+  <a href="index.html" class="mob-link">Home</a>
+  <a href="the-field.html" class="mob-link">Field</a>
+  <a href="tips.html" class="mob-link">Tips</a>
+  <a href="events.html" class="mob-link">Events</a>
+  <a href="rental-kits.html" class="mob-link">Rental Kits</a>
+  <a href="shop.html" class="mob-link">Shop</a>
+  <a href="private-events.html" class="mob-link">Private Events</a>
+</div>
+
+<nav>
+  <div class="container nav-inner">
+    <a href="index.html"><img src="Assets/Fredericton Airsoft Company Logo.JPG" alt="FAC Logo" class="nav-logo"></a>
+    <div class="nav-links">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="the-field.html" class="nav-link active">Field</a>
+      <a href="tips.html" class="nav-link">Tips</a>
+      <a href="events.html" class="nav-link">Events</a>
+      <a href="rental-kits.html" class="nav-link">Rental Kits</a>
+      <a href="shop.html" class="nav-link">Shop</a>
+      <a href="private-events.html" class="nav-link">Private Events</a>
+    </div>
+    <a href="https://www.facinc.ca/s/shop" class="btn-nav" target="_blank" rel="noopener">Shop Now →</a>
+    <button class="hamburger" onclick="document.getElementById('mobile-menu').classList.add('open')"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-grid"></div>
+  <div class="page-hero-photo">
+    <img src="https://placehold.co/1440x600/1a2210/323f20?text=FAC+Field+Aerial" alt="FAC Field aerial photograph">
+  </div>
+  <div class="container page-hero-content" style="width:100%;">
+    <div class="slabel fade-up d1">The Field</div>
+    <h1 style="font-size:clamp(2.5rem,6vw,5rem); font-weight:700; letter-spacing:-0.02em; color:var(--off-white); max-width:700px;" class="fade-up d2">
+      New Brunswick's<br><span style="color:var(--sand);">Largest</span> Airsoft Field
+    </h1>
+    <p style="color:rgba(237,233,224,0.55); font-size:0.9rem; margin-top:14px; max-width:500px;" class="fade-up d3">
+      ~60 acres built specifically for airsoft — Durham Bridge, NB
+    </p>
+  </div>
+</section>
+
+<!-- STATS STRIP -->
+<div class="stats-strip">
+  <div class="container">
+    <div class="stats-inner">
+      <div class="stat-item"><span class="stat-num">~60</span><span class="stat-lbl">Acres Total</span></div>
+      <div class="stat-item"><span class="stat-num">4</span><span class="stat-lbl">Field Zones</span></div>
+      <div class="stat-item"><span class="stat-num">13+</span><span class="stat-lbl">Bases</span></div>
+      <div class="stat-item"><span class="stat-num">~3km</span><span class="stat-lbl">Marked Trails</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- FIELD DESCRIPTION -->
+<section class="sec-dark sec-pad">
+  <div class="container">
+    <div style="display:grid; grid-template-columns:1fr 1.2fr; gap:80px; align-items:start;">
+      <!-- Left: intro -->
+      <div>
+        <div class="slabel">Overview</div>
+        <h2 style="font-size:clamp(1.8rem,3vw,2.8rem); font-weight:700; letter-spacing:-0.02em; color:var(--off-white); margin-bottom:20px;">60 Acres of Fun</h2>
+        <p style="color:rgba(237,233,224,0.65); font-size:0.9rem; margin-bottom:16px;">
+          At ~60 acres, FAC Field is the largest airsoft field in New Brunswick — divided into four distinct zones that can be played individually or combined for large-scale events.
+        </p>
+        <p style="color:rgba(237,233,224,0.55); font-size:0.88rem; margin-bottom:32px; line-height:1.8;">
+          West Wood and East Wood are the most developed areas, connected by ~3km of marked trails with <strong style="color:var(--off-white);">Location Signs</strong> at every base and <strong style="color:var(--off-white);">Directional Signs</strong> at every intersection. You will never be completely lost in the woods.
+        </p>
+        <p style="color:rgba(237,233,224,0.5); font-size:0.85rem; line-height:1.8;">
+          Bases are built from a mix of pallet structures, brush piles, and tarp walls. Each base is set up to work as a stand-alone field for small games, or combined with others for large events.
+        </p>
+      </div>
+
+      <!-- Right: zone cards -->
+      <div>
+        <div class="zone-grid">
+          <div class="zone-card">
+            <div style="font-family:'Oswald',sans-serif; font-size:0.62rem; letter-spacing:0.28em; text-transform:uppercase; color:var(--red); margin-bottom:8px;">Primary Zone</div>
+            <div style="font-family:'Oswald',sans-serif; font-size:1.3rem; font-weight:700; text-transform:uppercase; color:var(--off-white); margin-bottom:8px;">West Wood</div>
+            <div style="font-family:'Oswald',sans-serif; font-size:1.8rem; font-weight:700; color:var(--sand); line-height:1;">~18 <span style="font-size:0.9rem; color:var(--sand-dim);">acres</span></div>
+            <p style="font-size:0.78rem; color:rgba(237,233,224,0.5); margin-top:10px; line-height:1.6;">Most developed zone. Full trail network with location & directional signs throughout.</p>
+          </div>
+
+          <div class="zone-card">
+            <div style="font-family:'Oswald',sans-serif; font-size:0.62rem; letter-spacing:0.28em; text-transform:uppercase; color:var(--red); margin-bottom:8px;">Primary Zone</div>
+            <div style="font-family:'Oswald',sans-serif; font-size:1.3rem; font-weight:700; text-transform:uppercase; color:var(--off-white); margin-bottom:8px;">East Wood</div>
+            <div style="font-family:'Oswald',sans-serif; font-size:1.8rem; font-weight:700; color:var(--sand); line-height:1;">~8 <span style="font-size:0.9rem; color:var(--sand-dim);">acres</span></div>
+            <p style="font-size:0.78rem; color:rgba(237,233,224,0.5); margin-top:10px; line-height:1.6;">Connected to West Wood by trail network. Mid-right position on the field map.</p>
+          </div>
+
+          <div class="zone-card">
+            <div style="font-family:'Oswald',sans-serif; font-size:0.62rem; letter-spacing:0.28em; text-transform:uppercase; color:var(--sand-dim); margin-bottom:8px;">Secondary Zone</div>
+            <div style="font-family:'Oswald',sans-serif; font-size:1.3rem; font-weight:700; text-transform:uppercase; color:var(--off-white); margin-bottom:8px;">South Wood</div>
+            <div style="font-family:'Oswald',sans-serif; font-size:0.85rem; font-weight:400; color:rgba(237,233,224,0.5); margin-top:10px; line-height:1.6;">Southern section of the field. Bottom-left of the aerial map.</div>
+          </div>
+
+          <div class="zone-card">
+            <div style="font-family:'Oswald',sans-serif; font-size:0.62rem; letter-spacing:0.28em; text-transform:uppercase; color:var(--sand-dim); margin-bottom:8px;">Central Zone</div>
+            <div style="font-family:'Oswald',sans-serif; font-size:1.3rem; font-weight:700; text-transform:uppercase; color:var(--off-white); margin-bottom:8px;">The Bog</div>
+            <div style="font-family:'Oswald',sans-serif; font-size:0.85rem; font-weight:400; color:rgba(237,233,224,0.5); margin-top:10px; line-height:1.6;">Central raised, sparsely wooded area. Unique open terrain for different gameplay.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FIELD MAP PHOTO -->
+<section class="sec-base sec-pad">
+  <div class="container">
+    <div class="slabel" style="justify-content:center; margin-bottom:12px;">Field Map</div>
+    <h2 style="font-size:clamp(1.8rem,3vw,2.4rem); font-weight:700; letter-spacing:-0.02em; color:var(--off-white); text-align:center; margin-bottom:40px;">
+      October 2023 — Aerial View
+    </h2>
+
+    <div style="position:relative; width:100%; aspect-ratio:16/9; background:var(--olive-mid); overflow:hidden; border:1px solid var(--olive-border);">
+      <img src="https://placehold.co/1280x720/1a2210/323f20?text=FAC+Field+Aerial+Photo+Oct+2023" alt="FAC Field aerial photograph, October 2023" style="width:100%; height:100%; object-fit:cover; display:block;">
+      <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(10,12,7,0.6) 0%, transparent 40%);"></div>
+    </div>
+
+    <div style="background:var(--olive-card); border:1px solid var(--olive-border); border-top:none; padding:20px 28px;">
+      <p style="font-size:0.82rem; color:rgba(237,233,224,0.55); line-height:1.7;">
+        <span style="color:var(--sand-dim); font-family:'Oswald',sans-serif; font-size:0.65rem; letter-spacing:0.22em; text-transform:uppercase;">Caption — </span>
+        The field is everything below the dirt road. Visible: all of <strong style="color:var(--off-white);">West Wood (~18 acres)</strong>, about half of <strong style="color:var(--off-white);">East Wood (~8 acres)</strong> at mid-right, the northern tip of <strong style="color:var(--off-white);">South Wood</strong> in the bottom left, and less than half of the central raised <strong style="color:var(--off-white);">Bog</strong> in the lower right.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- HOW TO GET THERE -->
+<section class="sec-dark sec-pad">
+  <div class="container">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:start;">
+      <div>
+        <div class="slabel">Directions</div>
+        <h2 style="font-size:clamp(1.8rem,3vw,2.6rem); font-weight:700; letter-spacing:-0.02em; color:var(--off-white); margin-bottom:24px;">How to Get There</h2>
+
+        <div class="address-card" style="margin-bottom:24px;">
+          <div style="font-family:'Oswald',sans-serif; font-size:0.62rem; letter-spacing:0.26em; text-transform:uppercase; color:var(--muted); margin-bottom:10px;">Closest Google Maps Address</div>
+          <div style="font-family:'Oswald',sans-serif; font-size:1.3rem; font-weight:600; color:var(--off-white); margin-bottom:4px;">154 Lower Durham Rd</div>
+          <div style="font-size:0.88rem; color:var(--sand-dim);">Durham Bridge, NB &nbsp; E6C 1H6</div>
+        </div>
+
+        <div style="background:rgba(209,67,42,0.07); border:1px solid rgba(209,67,42,0.2); padding:16px 20px; margin-bottom:24px;">
+          <div style="font-family:'Oswald',sans-serif; font-size:0.62rem; letter-spacing:0.24em; text-transform:uppercase; color:var(--red); margin-bottom:8px;">⚠ Important Note</div>
+          <p style="font-size:0.82rem; color:rgba(237,233,224,0.65); line-height:1.65;">
+            The FAC Home Field does <strong style="color:var(--off-white);">not</strong> have a civic address. It is a woodlot on <strong style="color:var(--off-white);">Banks Road</strong> — a dirt road with no street sign. Navigate to the reference address above, then look for the FAC sign in a tree at Banks Road's entrance.
+          </p>
+        </div>
+
+        <div style="display:flex; gap:12px; align-items:flex-start; padding:16px; background:var(--olive-mid); border:1px solid var(--olive-border);">
+          <div style="flex-shrink:0; color:var(--red); font-size:1.2rem; margin-top:2px;">↓</div>
+          <p style="font-size:0.82rem; color:rgba(237,233,224,0.6); line-height:1.65;">
+            After turning onto Banks Road, the field is approximately <strong style="color:var(--off-white);">~2km down</strong> the dirt road. Follow the FAC signs.
+          </p>
+        </div>
+
+        <div style="margin-top:28px; display:flex; gap:12px; flex-wrap:wrap;">
+          <a href="events.html" class="btn-red">Find an Event →</a>
+          <a href="https://maps.google.com?q=154+Lower+Durham+Rd+Durham+Bridge+NB" class="btn-outline" target="_blank" rel="noopener">Open in Maps →</a>
+        </div>
+      </div>
+
+      <!-- Map embed placeholder -->
+      <div>
+        <div style="aspect-ratio:1; background:var(--olive-mid); border:1px solid var(--olive-border); display:flex; align-items:center; justify-content:center; flex-direction:column; gap:12px;">
+          <div style="color:var(--olive-border); font-size:3rem;">⊕</div>
+          <div style="font-family:'Oswald',sans-serif; font-size:0.72rem; letter-spacing:0.22em; text-transform:uppercase; color:var(--muted);">Map Embed</div>
+          <a href="https://maps.google.com?q=154+Lower+Durham+Rd+Durham+Bridge+NB" class="btn-sand" target="_blank" rel="noopener">Open in Google Maps →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DOWNLOADS -->
+<section class="sec-mid sec-pad" style="padding:64px 0;">
+  <div class="container">
+    <div style="text-align:center; margin-bottom:40px;">
+      <div class="slabel" style="justify-content:center;">Downloads</div>
+      <h2 style="font-size:clamp(1.6rem,2.5vw,2.2rem); font-weight:700; letter-spacing:-0.02em; color:var(--off-white);">Field Documents</h2>
+    </div>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; max-width:700px; margin:0 auto;">
+      <a href="https://www.facinc.ca" class="download-card" target="_blank" rel="noopener">
+        <div style="width:40px; height:40px; background:rgba(209,67,42,0.12); border:1px solid rgba(209,67,42,0.3); display:flex; align-items:center; justify-content:center; flex-shrink:0; clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </div>
+        <div>
+          <div style="font-family:'Oswald',sans-serif; font-size:0.88rem; font-weight:600; text-transform:uppercase; color:var(--off-white); margin-bottom:3px;">Field Rules</div>
+          <div style="font-size:0.72rem; color:var(--muted);">Download PDF ↓</div>
+        </div>
+      </a>
+      <a href="https://www.facinc.ca" class="download-card" target="_blank" rel="noopener">
+        <div style="width:40px; height:40px; background:rgba(209,67,42,0.12); border:1px solid rgba(209,67,42,0.3); display:flex; align-items:center; justify-content:center; flex-shrink:0; clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+        </div>
+        <div>
+          <div style="font-family:'Oswald',sans-serif; font-size:0.88rem; font-weight:600; text-transform:uppercase; color:var(--off-white); margin-bottom:3px;">Printable Field Map</div>
+          <div style="font-size:0.72rem; color:var(--muted);">Download PDF ↓</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <img src="Assets/Fredericton Airsoft Company Logo.JPG" alt="FAC Logo" style="height:60px; width:auto; object-fit:contain; margin-bottom:16px;">
+        <p style="font-size:0.82rem; color:rgba(237,233,224,0.4); line-height:1.6; max-width:280px;">Real People. Real Game. Real Community.<br>New Brunswick's largest airsoft field.</p>
+      </div>
+      <div>
+        <div style="font-family:'Oswald',sans-serif; font-size:0.65rem; letter-spacing:0.28em; text-transform:uppercase; color:var(--muted); margin-bottom:16px;">Navigation</div>
+        <a href="index.html" class="footer-link">Home</a>
+        <a href="the-field.html" class="footer-link">The Field</a>
+        <a href="tips.html" class="footer-link">Tips for Beginners</a>
+        <a href="events.html" class="footer-link">Events</a>
+        <a href="rental-kits.html" class="footer-link">Rental Kits</a>
+        <a href="shop.html" class="footer-link">Shop</a>
+        <a href="private-events.html" class="footer-link">Private Events</a>
+      </div>
+      <div>
+        <div style="font-family:'Oswald',sans-serif; font-size:0.65rem; letter-spacing:0.28em; text-transform:uppercase; color:var(--muted); margin-bottom:16px;">Contact</div>
+        <a href="tel:15062613689" class="footer-link">1-506-261-3689</a>
+        <a href="mailto:frederictonairsoftcompany@gmail.com" class="footer-link" style="word-break:break-all;">frederictonairsoftcompany@gmail.com</a>
+        <a href="https://www.instagram.com/frederictonairsoftcompany" class="footer-link" target="_blank">@frederictonairsoftcompany</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p style="font-size:0.72rem; color:var(--muted);">© 2026 Fredericton Airsoft Company Inc.</p>
+      <p style="font-size:0.68rem; color:var(--muted); font-family:'Oswald',sans-serif; text-transform:uppercase; letter-spacing:0.1em;">Must be 10+ to play</p>
+    </div>
+  </div>
+  <div class="rainbow-stripe"></div>
+</footer>
+
+<script>
+  document.getElementById('close-menu').addEventListener('click', () => document.getElementById('mobile-menu').classList.remove('open'));
+  document.getElementById('mobile-menu').querySelectorAll('a').forEach(l => l.addEventListener('click', () => document.getElementById('mobile-menu').classList.remove('open')));
+  document.addEventListener('keydown', e => { if(e.key==='Escape') document.getElementById('mobile-menu').classList.remove('open'); });
+</script>
+</body>
+</html>

@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Events 2026 — Fredericton Airsoft Company Inc.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root{--red:#d1432a;--red-dark:#a8341f;--red-glow:rgba(209,67,42,0.2);--olive-dark:#0a0c07;--olive-base:#12160c;--olive-mid:#1a2210;--olive-card:#202a12;--olive-border:#323f20;--olive-hover:#46582e;--sand:#c4a57b;--sand-dim:#8a7258;--off-white:#ede9e0;--muted:#5a5a4a}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:'Inter',sans-serif;background:var(--olive-dark);color:var(--off-white);line-height:1.75;overflow-x:hidden}
+    h1,h2,h3,h4{font-family:'Oswald',sans-serif;text-transform:uppercase;line-height:1.05}
+    a{text-decoration:none;color:inherit}
+    .container{max-width:1280px;margin:0 auto;padding:0 32px}
+
+    nav{position:sticky;top:0;z-index:50;height:64px;background:rgba(10,12,7,0.94);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.05)}
+    .nav-inner{height:100%;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .nav-logo{height:44px;width:auto;object-fit:contain;flex-shrink:0;transition:opacity 0.2s}
+    .nav-logo:hover{opacity:0.85}
+    .nav-links{display:flex;align-items:center;gap:24px;flex:1;justify-content:center}
+    .nav-link{font-family:'Oswald',sans-serif;font-size:0.75rem;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:rgba(237,233,224,0.6);position:relative;padding:4px 0;transition:color 0.2s;white-space:nowrap}
+    .nav-link::after{content:'';position:absolute;bottom:-1px;left:0;width:0;height:1px;background:var(--red);transition:width 0.25s ease}
+    .nav-link:hover,.nav-link.active{color:var(--off-white)}
+    .nav-link:hover::after,.nav-link.active::after{width:100%}
+    .btn-nav{font-family:'Oswald',sans-serif;font-size:0.72rem;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;background:var(--red);color:#fff;padding:9px 20px;white-space:nowrap;flex-shrink:0;clip-path:polygon(0 0,calc(100% - 6px) 0,100% 6px,100% 100%,6px 100%,0 calc(100% - 6px));transition:background 0.2s,transform 0.15s cubic-bezier(0.34,1.56,0.64,1)}
+    .btn-nav:hover{background:var(--red-dark);transform:translateY(-1px)}
+    .hamburger{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:6px}
+    .hamburger span{display:block;width:22px;height:1.5px;background:var(--off-white)}
+    #mobile-menu{display:none;position:fixed;inset:0;z-index:99;background:var(--olive-dark);flex-direction:column;align-items:center;justify-content:center;gap:32px}
+    #mobile-menu.open{display:flex}
+    .mob-link{font-family:'Oswald',sans-serif;font-size:2rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--off-white);transition:color 0.15s}
+    .mob-link:hover{color:var(--red)}
+    #close-menu{position:absolute;top:20px;right:28px;background:none;border:none;color:var(--off-white);font-size:1.5rem;cursor:pointer;font-family:'Oswald',sans-serif}
+
+    .btn-red{display:inline-flex;align-items:center;gap:8px;background:var(--red);color:#fff;font-family:'Oswald',sans-serif;font-size:0.82rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;padding:13px 28px;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px));transition:background 0.2s,transform 0.15s cubic-bezier(0.34,1.56,0.64,1);cursor:pointer;border:none}
+    .btn-red:hover{background:var(--red-dark);transform:translateY(-2px)}
+    .btn-red-sm{display:inline-flex;align-items:center;gap:6px;background:var(--red);color:#fff;font-family:'Oswald',sans-serif;font-size:0.72rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;padding:10px 18px;clip-path:polygon(0 0,calc(100% - 6px) 0,100% 6px,100% 100%,6px 100%,0 calc(100% - 6px));transition:background 0.2s,transform 0.15s cubic-bezier(0.34,1.56,0.64,1);cursor:pointer;border:none;width:100%;justify-content:center}
+    .btn-red-sm:hover{background:var(--red-dark);transform:translateY(-1px)}
+
+    .slabel{font-family:'Oswald',sans-serif;font-size:0.65rem;font-weight:500;letter-spacing:0.32em;text-transform:uppercase;color:var(--red);display:flex;align-items:center;gap:10px;margin-bottom:16px}
+    .slabel::before{content:'';width:24px;height:1px;background:var(--red);flex-shrink:0}
+
+    .page-hero{position:relative;min-height:44vh;background:radial-gradient(ellipse 100% 100% at 50% 0%,rgba(38,54,18,0.55) 0%,transparent 60%),var(--olive-dark);display:flex;align-items:flex-end;overflow:hidden}
+    .page-hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.012) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.012) 1px,transparent 1px);background-size:56px 56px}
+    .page-hero-content{position:relative;z-index:2;padding:64px 0;width:100%}
+
+    .sec-pad{padding:96px 0}
+    .sec-pad-sm{padding:64px 0}
+    .sec-dark{background:var(--olive-dark)}
+    .sec-base{background:var(--olive-base)}
+    .sec-mid{background:var(--olive-mid)}
+
+    /* PRICING BANNER */
+    .price-banner{background:var(--olive-base);border-top:1px solid var(--olive-border);border-bottom:1px solid var(--olive-border);padding:20px 0}
+    .price-banner-inner{display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap}
+
+    /* EVENT GRID */
+    .events-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .event-card{background:var(--olive-card);border:1px solid var(--olive-border);padding:24px;display:flex;flex-direction:column;gap:10px;position:relative;overflow:hidden;transition:border-color 0.2s,transform 0.2s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.2s}
+    .event-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform 0.3s ease}
+    .event-card:hover{border-color:var(--olive-hover);transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,0.5),0 0 20px var(--red-glow)}
+    .event-card:hover::before{transform:scaleX(1)}
+    .event-card.milsim{border-color:rgba(209,67,42,0.35);background:rgba(209,67,42,0.04)}
+    .event-card.milsim::before{transform:scaleX(1);opacity:0.5}
+
+    .event-type{font-family:'Oswald',sans-serif;font-size:0.6rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--sand-dim)}
+    .date-badge{display:inline-flex;background:var(--red);padding:4px 10px;clip-path:polygon(0 0,calc(100% - 6px) 0,100% 6px,100% 100%,0 100%);width:fit-content}
+    .date-text{font-family:'Oswald',sans-serif;font-size:0.65rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#fff}
+    .event-name{font-family:'Oswald',sans-serif;font-size:1rem;font-weight:600;letter-spacing:0.01em;text-transform:uppercase;color:var(--off-white);flex:1;line-height:1.25}
+    .event-price{font-family:'Oswald',sans-serif;font-size:1.15rem;font-weight:700;color:var(--off-white)}
+    .event-door{font-size:0.72rem;color:var(--muted)}
+
+    /* MILSIM FEATURE */
+    .milsim-card{background:rgba(209,67,42,0.06);border:1px solid rgba(209,67,42,0.3);padding:40px;position:relative;overflow:hidden}
+    .milsim-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(to right,var(--red),rgba(209,67,42,0.3))}
+
+    /* REFUND / POLICY */
+    .policy-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .policy-item{padding:24px;background:var(--olive-card);border:1px solid var(--olive-border);border-top:2px solid var(--olive-border)}
+    .policy-item:first-child{border-top-color:var(--red)}
+
+    footer{background:var(--olive-base);border-top:1px solid var(--olive-border)}
+    .footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1.2fr;gap:64px;padding:64px 0 48px}
+    .footer-link{font-family:'Oswald',sans-serif;font-size:0.75rem;font-weight:400;letter-spacing:0.12em;text-transform:uppercase;color:rgba(237,233,224,0.5);display:block;padding:5px 0;transition:color 0.2s}
+    .footer-link:hover{color:var(--off-white)}
+    .footer-bottom{border-top:1px solid var(--olive-border);padding:20px 0;display:flex;justify-content:space-between;align-items:center}
+    .rainbow-stripe{height:4px;background:linear-gradient(to right,#e40303 0%,#e40303 16.66%,#ff8c00 16.66%,#ff8c00 33.33%,#ffed00 33.33%,#ffed00 50%,#008026 50%,#008026 66.66%,#004dff 66.66%,#004dff 83.33%,#750787 83.33%,#750787 100%)}
+
+    @media(max-width:1024px){.events-grid{grid-template-columns:repeat(2,1fr)}.policy-grid{grid-template-columns:1fr 1fr}}
+    @media(max-width:768px){.nav-links,.btn-nav{display:none}.hamburger{display:flex}.events-grid{grid-template-columns:1fr}.policy-grid{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr;gap:32px}}
+  </style>
+</head>
+<body>
+<div id="mobile-menu" role="dialog">
+  <button id="close-menu" onclick="document.getElementById('mobile-menu').classList.remove('open')">✕ CLOSE</button>
+  <a href="index.html" class="mob-link">Home</a><a href="the-field.html" class="mob-link">Field</a>
+  <a href="tips.html" class="mob-link">Tips</a><a href="events.html" class="mob-link">Events</a>
+  <a href="rental-kits.html" class="mob-link">Rental Kits</a><a href="shop.html" class="mob-link">Shop</a>
+  <a href="private-events.html" class="mob-link">Private Events</a>
+</div>
+<nav>
+  <div class="container nav-inner">
+    <a href="index.html"><img src="Assets/Fredericton Airsoft Company Logo.JPG" alt="FAC Logo" class="nav-logo"></a>
+    <div class="nav-links">
+      <a href="index.html" class="nav-link">Home</a><a href="the-field.html" class="nav-link">Field</a>
+      <a href="tips.html" class="nav-link">Tips</a><a href="events.html" class="nav-link active">Events</a>
+      <a href="rental-kits.html" class="nav-link">Rental Kits</a><a href="shop.html" class="nav-link">Shop</a>
+      <a href="private-events.html" class="nav-link">Private Events</a>
+    </div>
+    <a href="https://www.facinc.ca/s/shop" class="btn-nav" target="_blank" rel="noopener">Shop Now →</a>
+    <button class="hamburger" onclick="document.getElementById('mobile-menu').classList.add('open')"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-grid"></div>
+  <div class="page-hero-content">
+    <div class="container">
+      <div class="slabel" style="animation:fadeUp 0.6s both 0.05s">2026 Schedule</div>
+      <h1 style="font-size:clamp(2.5rem,6vw,5rem);font-weight:700;letter-spacing:-0.02em;color:var(--off-white);max-width:700px;animation:fadeUp 0.7s cubic-bezier(0.34,1.56,0.64,1) both 0.15s">
+        Upcoming <span style="color:var(--sand);">Events</span>
+      </h1>
+      <p style="color:rgba(237,233,224,0.55);font-size:0.9rem;margin-top:14px;max-width:500px;animation:fadeUp 0.7s cubic-bezier(0.34,1.56,0.64,1) both 0.25s">
+        Pre-register online to save $5 on admission. Pre-booking closes at 11:55pm the night before.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING BANNER -->
+<div class="price-banner">
+  <div class="container">
+    <div class="price-banner-inner">
+      <div style="display:flex;gap:40px;flex-wrap:wrap">
+        <div>
+          <div style="font-family:'Oswald',sans-serif;font-size:0.6rem;letter-spacing:0.26em;text-transform:uppercase;color:var(--sand-dim);margin-bottom:4px;">Admission</div>
+          <div style="font-family:'Oswald',sans-serif;font-size:1.1rem;font-weight:600;color:var(--off-white);">$20 <span style="font-size:0.7rem;color:var(--red);letter-spacing:0.12em;text-transform:uppercase">pre-reg</span> &nbsp;/&nbsp; $25 door</div>
+        </div>
+        <div>
+          <div style="font-family:'Oswald',sans-serif;font-size:0.6rem;letter-spacing:0.26em;text-transform:uppercase;color:var(--sand-dim);margin-bottom:4px;">Rental + Admission</div>
+          <div style="font-family:'Oswald',sans-serif;font-size:1.1rem;font-weight:600;color:var(--off-white);">$43.48 <span style="font-size:0.7rem;color:var(--red);letter-spacing:0.12em;text-transform:uppercase">pre-booked</span> &nbsp;/&nbsp; $65 door</div>
+        </div>
+        <div>
+          <div style="font-family:'Oswald',sans-serif;font-size:0.6rem;letter-spacing:0.26em;text-transform:uppercase;color:var(--sand-dim);margin-bottom:4px;">All prices</div>
+          <div style="font-family:'Oswald',sans-serif;font-size:1.1rem;font-weight:600;color:var(--off-white);">Taxes included</div>
+        </div>
+      </div>
+      <a href="rental-kits.html" style="display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--sand);font-family:'Oswald',sans-serif;font-size:0.75rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;padding:10px 20px;border:1px solid rgba(196,165,123,0.3);clip-path:polygon(0 0,calc(100% - 6px) 0,100% 6px,100% 100%,6px 100%,0 calc(100% - 6px));transition:border-color 0.2s,background 0.2s;white-space:nowrap" onmouseover="this.style.borderColor='var(--sand)'" onmouseout="this.style.borderColor='rgba(196,165,123,0.3)'">Book Rental Kit →</a>
+    </div>
+  </div>
+</div>
+
+<!-- ALL EVENTS -->
+<section class="sec-dark sec-pad">
+  <div class="container">
+    <div style="margin-bottom:40px;">
+      <div class="slabel">All Public Events</div>
+      <h2 style="font-size:clamp(1.8rem,3vw,2.4rem);font-weight:700;letter-spacing:-0.02em;color:var(--off-white);">2026 Event Calendar</h2>
+    </div>
+
+    <div class="events-grid">
+      <!-- June events -->
+      <div class="event-card">
+        <span class="event-type">Night Games</span>
+        <div class="date-badge"><span class="date-text">June 2, 2026</span></div>
+        <p class="event-name">Night Games — June 2nd</p>
+        <span class="event-price">CAD $17.39</span>
+        <span class="event-door">$25 at the door · Pre-book by Jun 1</span>
+        <a href="https://www.facinc.ca/product/pre-register-june-2nd-2026-night-games/BF6WK75KJF5U6K5PMJ325GRK" class="btn-red-sm" target="_blank" rel="noopener">Pre-Register →</a>
+      </div>
+
+      <div class="event-card">
+        <span class="event-type">Special Game</span>
+        <div class="date-badge"><span class="date-text">June 6, 2026</span></div>
+        <p class="event-name">Gold Rush</p>
+        <span class="event-price">CAD $17.39</span>
+        <span class="event-door">$25 at the door · Pre-book by Jun 5</span>
+        <a href="https://www.facinc.ca/product/pre-register-june-6th-2026-gold-rush/TKDRZQZ64EQJFUJXRYEXQTD3" class="btn-red-sm" target="_blank" rel="noopener">Pre-Register →</a>
+      </div>
+
+      <div class="event-card">
+        <span class="event-type">Night Games</span>
+        <div class="date-badge"><span class="date-text">June 6, 2026</span></div>
+        <p class="event-name">Night Games — June 6th</p>
+        <span class="event-price">CAD $17.39</span>
+        <span class="event-door">$25 at the door · Pre-book by Jun 5</span>
+        <a href="https://www.facinc.ca/product/pre-register-june-6th-2026-night-games/CDON5BGICRHYLHTC2XNQQGFG" class="btn-red-sm" target="_blank" rel="noopener">Pre-Register →</a>
+      </div>
+
+      <div class="event-card">
+        <span class="event-type">Night Games</span>
+        <div class="date-badge"><span class="date-text">June 12, 2026</span></div>
+        <p class="event-name">Night Games — June 12th</p>
+        <span class="event-price">CAD $17.39</span>
+        <span class="event-door">$25 at the door · Pre-book by Jun 11</span>
+        <a href="https://www.facinc.ca/product/pre-register-june-12th-2026-night-games/UBBFYCYOZFP2RMRWLXT22CO6" class="btn-red-sm" target="_blank" rel="noopener">Pre-Register →</a>
+      </div>
+
+      <div class="event-card" style="border-color:rgba(196,165,123,0.25);">
+        <span class="event-type" style="color:var(--sand-dim);">Beginner Friendly</span>
+        <div class="date-badge"><span class="date-text">June 13, 2026</span></div>
+        <p class="event-name">Beginners Day</p>
+        <span class="event-price">CAD $17.39</span>
+        <span class="event-door">$25 at the door · Must be 10+ to play</span>
+        <div style="font-size:0.72rem;color:var(--sand-dim);font-family:'Oswald',sans-serif;letter-spacing:0.1em;text-transform:uppercase;">Great for first-timers</div>
+        <a href="https://www.facinc.ca/product/pre-register-june-13th-2026-beginners-day/JCWQ33HPIQGGSFG2DZQQLFTQ" class="btn-red-sm" target="_blank" rel="noopener">Pre-Register →</a>
+      </div>
+
+      <div class="event-card">
+        <span class="event-type">Night Games</span>
+        <div class="date-badge"><span class="date-text">June 17, 2026</span></div>
+        <p class="event-name">Night Games — June 17th</p>
+        <span class="event-price">CAD $17.39</span>
+        <span class="event-door">$25 at the door · Pre-book by Jun 16</span>
+        <a href="https://www.facinc.ca/product/pre-register-june-17th-2026-night-games/5CG3WZCRXNYF2S3B2GX4IGYP" class="btn-red-sm" target="_blank" rel="noopener">Pre-Register →</a>
+      </div>
+
+      <div class="event-card">
+        <span class="event-type">Special Game</span>
+        <div class="date-badge"><span class="date-text">June 20, 2026</span></div>
+        <p class="event-name">Father's Day Game</p>
+        <span class="event-price">CAD $17.39</span>
+        <span class="event-door">$25 at the door · Pre-book by Jun 19</span>
+        <a href="https://www.facinc.ca/product/pre-register-june-20th-2026-father-s-day-game/NFHQCPSEO53KENH6IRKKOZ4J" class="btn-red-sm" target="_blank" rel="noopener">Pre-Register →</a>
+      </div>
+
+      <div class="event-card">
+        <span class="event-type">Night Games</span>
+        <div class="date-badge"><span class="date-text">June 24, 2026</span></div>
+        <p class="event-name">Night Games — June 24th</p>
+        <span class="event-price">CAD $17.39</span>
+        <span class="event-door">$25 at the door · Pre-book by Jun 23</span>
+        <a href="https://www.facinc.ca/product/pre-register-june-24th-2026-night-games/TASMMVEBJEFHPMUKDSMSC24I" class="btn-red-sm" target="_blank" rel="noopener">Pre-Register →</a>
+      </div>
+
+      <div class="event-card">
+        <span class="event-type">Night Games</span>
+        <div class="date-badge"><span class="date-text">June 30, 2026</span></div>
+        <p class="event-name">Night Games — June 30th</p>
+        <span class="event-price">CAD $17.39</span>
+        <span class="event-door">$25 at the door · Pre-book by Jun 29</span>
+        <a href="https://www.facinc.ca/product/pre-register-june-30th-2026-night-games/ZPHUKT756I4P3WP45QH4KJ46" class="btn-red-sm" target="_blank" rel="noopener">Pre-Register →</a>
+      </div>
+
+      <div class="event-card">
+        <span class="event-type">Tournament</span>
+        <div class="date-badge"><span class="date-text">July 11, 2026</span></div>
+        <p class="event-name">Tri-Barrel Tournament</p>
+        <span class="event-price">CAD $17.39</span>
+        <span class="event-door">$25 at the door · Pre-book by Jul 10</span>
+        <a href="https://www.facinc.ca/product/pre-register-july-11th-2026-tri-barrel-tournament/EKBT5FEKJAJJ6DHWFLO5T55W" class="btn-red-sm" target="_blank" rel="noopener">Pre-Register →</a>
+      </div>
+
+      <div class="event-card">
+        <span class="event-type">Autumn Game</span>
+        <div class="date-badge"><span class="date-text">Oct 3, 2026</span></div>
+        <p class="event-name">Turkey Shoot</p>
+        <span class="event-price">CAD $17.39</span>
+        <span class="event-door">$25 at the door · Pre-book by Oct 2</span>
+        <a href="https://www.facinc.ca/product/pre-register-oct-3rd-2026-turkey-shoot/LYUX47Y5RMMFBDQTUG3NS64P" class="btn-red-sm" target="_blank" rel="noopener">Pre-Register →</a>
+      </div>
+
+      <div class="event-card" style="border-color:rgba(196,165,123,0.25);">
+        <span class="event-type" style="color:var(--sand-dim);">Halloween Special</span>
+        <div class="date-badge" style="background:rgba(196,165,123,0.8);"><span class="date-text">Oct 31, 2026</span></div>
+        <p class="event-name">Trigger-Treat 2026 🎃</p>
+        <span class="event-price" style="color:var(--sand);">CAD $21.74</span>
+        <span class="event-door">$25+ at the door · Pre-book by Oct 30</span>
+        <a href="https://www.facinc.ca/product/pre-register-oct-31st-2026-trigger-treat-2026/SVWD7NRLHUOC42SIF2CXGJKT" class="btn-red-sm" target="_blank" rel="noopener">Pre-Register →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MILSIM FEATURE -->
+<section class="sec-mid sec-pad">
+  <div class="container">
+    <div class="slabel" style="margin-bottom:12px;">Featured Milsim Event</div>
+    <div class="milsim-card">
+      <div style="display:grid;grid-template-columns:1fr auto;gap:40px;align-items:start;flex-wrap:wrap;">
+        <div>
+          <div style="font-family:'Oswald',sans-serif;font-size:0.62rem;letter-spacing:0.3em;text-transform:uppercase;color:rgba(209,67,42,0.7);margin-bottom:12px;">New Brunswick's Most In-Depth Milsim</div>
+          <h2 style="font-size:clamp(2rem,4vw,3.5rem);font-weight:700;letter-spacing:-0.02em;color:var(--off-white);margin-bottom:8px;">Op: Lion's Den</h2>
+          <div style="font-family:'Oswald',sans-serif;font-size:1rem;font-weight:500;color:var(--sand);margin-bottom:20px;">June 27, 2026 &nbsp;+&nbsp; September 5, 2026</div>
+          <p style="font-size:0.88rem;color:rgba(237,233,224,0.65);margin-bottom:20px;max-width:600px;line-height:1.75;">
+            New Brunswick's most in-depth milsim returns to FAC for two dates this year. Early bird tickets are available now. At-the-door admission is $10 more than regular tickets.
+          </p>
+          <div style="display:inline-flex;padding:8px 14px;background:rgba(209,67,42,0.15);border:1px solid rgba(209,67,42,0.4);margin-bottom:20px;">
+            <span style="font-family:'Oswald',sans-serif;font-size:0.65rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--red);">⚠ NO RENTALS AVAILABLE FOR THESE EVENTS</span>
+          </div>
+          <div style="display:flex;gap:20px;flex-wrap:wrap;margin-bottom:24px;">
+            <div>
+              <div style="font-family:'Oswald',sans-serif;font-size:0.6rem;letter-spacing:0.24em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">Early Bird Ticket</div>
+              <div style="font-family:'Oswald',sans-serif;font-size:1.6rem;font-weight:700;color:var(--off-white);">$52.17</div>
+            </div>
+            <div>
+              <div style="font-family:'Oswald',sans-serif;font-size:0.6rem;letter-spacing:0.24em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">Early Bird + Camping</div>
+              <div style="font-family:'Oswald',sans-serif;font-size:1.6rem;font-weight:700;color:var(--off-white);">$60.87</div>
+            </div>
+            <div>
+              <div style="font-family:'Oswald',sans-serif;font-size:0.6rem;letter-spacing:0.24em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">Both Dates (Milsim Combo)</div>
+              <div style="font-family:'Oswald',sans-serif;font-size:1.6rem;font-weight:700;color:var(--sand);">$86.95 <span style="font-size:0.8rem;color:var(--red);letter-spacing:0.1em;text-transform:uppercase">Save $40</span></div>
+            </div>
+          </div>
+          <p style="font-size:0.78rem;color:rgba(237,233,224,0.45);margin-bottom:20px;">
+            Camping available the night before for $8.70 per person. Regular tickets are $10 more from June 1–25.
+          </p>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;">
+            <a href="https://www.facinc.ca/product/op-lion-s-den-june-27th-early-bird/CMIN24WM55BYODJEHIMGSHZ7" class="btn-red" target="_blank" rel="noopener">Jun 27 Early Bird →</a>
+            <a href="https://www.facinc.ca/product/op-lion-s-den-sept-5th-early-bird/S4OALPXRSFJCKEHM4EAYXQYO" style="display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--off-white);font-family:'Oswald',sans-serif;font-size:0.82rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;padding:12px 28px;border:1px solid rgba(237,233,224,0.28);clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px));transition:border-color 0.2s,transform 0.15s" target="_blank" rel="noopener" onmouseover="this.style.borderColor='var(--off-white)'" onmouseout="this.style.borderColor='rgba(237,233,224,0.28)'">Sept 5 Early Bird →</a>
+            <a href="https://www.facinc.ca/product/milsim-combo-lion-s-den/LMPDY3GRSLJPTK7WB2TB3KYU" style="display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--sand);font-family:'Oswald',sans-serif;font-size:0.82rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;padding:12px 28px;border:1px solid rgba(196,165,123,0.3);clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px));transition:border-color 0.2s,transform 0.15s" target="_blank" rel="noopener" onmouseover="this.style.borderColor='var(--sand)'" onmouseout="this.style.borderColor='rgba(196,165,123,0.3)'">Milsim Combo (Both Dates) →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REFUND POLICY -->
+<section class="sec-dark sec-pad-sm">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:36px;">
+      <div class="slabel" style="justify-content:center;">Policies</div>
+      <h2 style="font-size:clamp(1.6rem,2.5vw,2.2rem);font-weight:700;letter-spacing:-0.02em;color:var(--off-white);">Refund Policy</h2>
+    </div>
+    <div class="policy-grid">
+      <div class="policy-item" style="border-top-color:var(--red);">
+        <div style="font-family:'Oswald',sans-serif;font-size:2rem;font-weight:700;color:var(--off-white);margin-bottom:8px;">100%</div>
+        <div style="font-family:'Oswald',sans-serif;font-size:0.8rem;font-weight:600;text-transform:uppercase;color:var(--off-white);margin-bottom:8px;">Full Refund</div>
+        <p style="font-size:0.8rem;color:rgba(237,233,224,0.55);line-height:1.6;">If the event is moved or cancelled by FAC, you receive a full refund.</p>
+      </div>
+      <div class="policy-item">
+        <div style="font-family:'Oswald',sans-serif;font-size:2rem;font-weight:700;color:var(--off-white);margin-bottom:8px;">75–90%</div>
+        <div style="font-family:'Oswald',sans-serif;font-size:0.8rem;font-weight:600;text-transform:uppercase;color:var(--off-white);margin-bottom:8px;">Player Cancels</div>
+        <p style="font-size:0.8rem;color:rgba(237,233,224,0.55);line-height:1.6;">If you cancel the day before or earlier, you receive a 75–90% refund depending on the event.</p>
+      </div>
+      <div class="policy-item">
+        <div style="font-family:'Oswald',sans-serif;font-size:2rem;font-weight:700;color:var(--off-white);margin-bottom:8px;">50–75%</div>
+        <div style="font-family:'Oswald',sans-serif;font-size:0.8rem;font-weight:600;text-transform:uppercase;color:var(--off-white);margin-bottom:8px;">Day-of / No-Show</div>
+        <p style="font-size:0.8rem;color:rgba(237,233,224,0.55);line-height:1.6;">Day-of cancellations and no-shows receive a 50–75% refund depending on the event.</p>
+      </div>
+    </div>
+    <div style="margin-top:24px;padding:16px 24px;background:var(--olive-mid);border:1px solid var(--olive-border);text-align:center;">
+      <p style="font-size:0.8rem;color:rgba(237,233,224,0.5);">
+        <strong style="color:var(--off-white);">Waiver note:</strong> Children under 19 whose parents aren't driving them must have a signed waiver sent with them — or they won't be allowed to play. Waivers available at the field or download from our website.
+      </p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <img src="Assets/Fredericton Airsoft Company Logo.JPG" alt="FAC Logo" style="height:60px;width:auto;object-fit:contain;margin-bottom:16px;">
+        <p style="font-size:0.82rem;color:rgba(237,233,224,0.4);line-height:1.6;max-width:280px;">Real People. Real Game. Real Community.</p>
+      </div>
+      <div>
+        <div style="font-family:'Oswald',sans-serif;font-size:0.65rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;">Navigation</div>
+        <a href="index.html" class="footer-link">Home</a><a href="the-field.html" class="footer-link">The Field</a>
+        <a href="tips.html" class="footer-link">Tips for Beginners</a><a href="events.html" class="footer-link">Events</a>
+        <a href="rental-kits.html" class="footer-link">Rental Kits</a><a href="shop.html" class="footer-link">Shop</a>
+        <a href="private-events.html" class="footer-link">Private Events</a>
+      </div>
+      <div>
+        <div style="font-family:'Oswald',sans-serif;font-size:0.65rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;">Contact</div>
+        <a href="tel:15062613689" class="footer-link">1-506-261-3689</a>
+        <a href="mailto:frederictonairsoftcompany@gmail.com" class="footer-link" style="word-break:break-all;">frederictonairsoftcompany@gmail.com</a>
+        <a href="https://www.instagram.com/frederictonairsoftcompany" class="footer-link" target="_blank">@frederictonairsoftcompany</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p style="font-size:0.72rem;color:var(--muted);">© 2026 Fredericton Airsoft Company Inc.</p>
+      <p style="font-size:0.68rem;color:var(--muted);font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:0.1em;">Must be 10+ to play</p>
+    </div>
+  </div>
+  <div class="rainbow-stripe"></div>
+</footer>
+<script>
+  document.getElementById('close-menu').addEventListener('click',()=>document.getElementById('mobile-menu').classList.remove('open'));
+  document.getElementById('mobile-menu').querySelectorAll('a').forEach(l=>l.addEventListener('click',()=>document.getElementById('mobile-menu').classList.remove('open')));
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')document.getElementById('mobile-menu').classList.remove('open')});
+</script>
+</body>
+</html>

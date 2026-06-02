@@ -1,0 +1,1598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fredericton Airsoft Company Inc. — New Brunswick's Largest Airsoft Field</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --red: #d1432a;
+      --red-dark: #a8341f;
+      --red-glow: rgba(209,67,42,0.2);
+      --olive-dark: #0a0c07;
+      --olive-base: #12160c;
+      --olive-mid: #1a2210;
+      --olive-card: #202a12;
+      --olive-border: #323f20;
+      --olive-hover: #46582e;
+      --sand: #c4a57b;
+      --sand-dim: #8a7258;
+      --off-white: #ede9e0;
+      --muted: #5a5a4a;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--olive-dark);
+      color: var(--off-white);
+      line-height: 1.75;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Oswald', sans-serif;
+      text-transform: uppercase;
+      line-height: 1.05;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      height: 64px;
+      background: rgba(10,12,7,0.94);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .nav-inner {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .nav-logo {
+      height: 44px;
+      width: auto;
+      object-fit: contain;
+      flex-shrink: 0;
+      transition: opacity 0.2s;
+    }
+    .nav-logo:hover { opacity: 0.85; }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex: 1;
+      justify-content: center;
+    }
+
+    .nav-link {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(237,233,224,0.6);
+      position: relative;
+      padding: 4px 0;
+      transition: color 0.2s;
+      white-space: nowrap;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--red);
+      transition: width 0.25s ease;
+    }
+    .nav-link:hover, .nav-link.active { color: var(--off-white); }
+    .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+    .nav-link:focus-visible { outline: 1px solid var(--red); outline-offset: 4px; border-radius: 1px; }
+
+    .btn-nav {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      background: var(--red);
+      color: #fff;
+      padding: 9px 20px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px));
+      transition: background 0.2s, transform 0.15s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .btn-nav:hover { background: var(--red-dark); transform: translateY(-1px); }
+    .btn-nav:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
+
+    /* ─── HAMBURGER ─── */
+    .hamburger {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      flex-direction: column;
+      gap: 5px;
+      padding: 6px;
+    }
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: var(--off-white);
+      transition: transform 0.25s, opacity 0.25s;
+    }
+    #mobile-menu.open ~ nav .hamburger span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    #mobile-menu.open ~ nav .hamburger span:nth-child(2) { opacity: 0; }
+    #mobile-menu.open ~ nav .hamburger span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    /* ─── MOBILE MENU ─── */
+    #mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 99;
+      background: var(--olive-dark);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+    }
+    #mobile-menu.open { display: flex; }
+    .mob-link {
+      font-family: 'Oswald', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--off-white);
+      transition: color 0.15s;
+    }
+    .mob-link:hover { color: var(--red); }
+    #close-menu {
+      position: absolute;
+      top: 20px;
+      right: 28px;
+      background: none;
+      border: none;
+      color: var(--off-white);
+      font-size: 1.5rem;
+      cursor: pointer;
+      font-family: 'Oswald', sans-serif;
+      letter-spacing: 0.1em;
+    }
+
+    /* ─── BUTTONS ─── */
+    .btn-red {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--red);
+      color: #fff;
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 13px 28px;
+      clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+      transition: background 0.2s, transform 0.15s cubic-bezier(0.34,1.56,0.64,1);
+      cursor: pointer;
+      border: none;
+    }
+    .btn-red:hover { background: var(--red-dark); transform: translateY(-2px); }
+    .btn-red:active { transform: translateY(0); }
+    .btn-red:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--off-white);
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 12px 28px;
+      border: 1px solid rgba(237,233,224,0.28);
+      clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+      transition: border-color 0.2s, background 0.2s, transform 0.15s cubic-bezier(0.34,1.56,0.64,1);
+      cursor: pointer;
+    }
+    .btn-outline:hover { border-color: var(--off-white); background: rgba(255,255,255,0.05); transform: translateY(-2px); }
+    .btn-outline:active { transform: translateY(0); }
+    .btn-outline:focus-visible { outline: 2px solid rgba(237,233,224,0.5); outline-offset: 3px; }
+
+    .btn-sand {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--sand);
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 10px 20px;
+      border: 1px solid rgba(196,165,123,0.3);
+      clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px));
+      transition: border-color 0.2s, background 0.2s, transform 0.15s cubic-bezier(0.34,1.56,0.64,1);
+      cursor: pointer;
+    }
+    .btn-sand:hover { border-color: var(--sand); background: rgba(196,165,123,0.08); transform: translateY(-2px); }
+    .btn-sand:focus-visible { outline: 2px solid var(--sand); outline-offset: 3px; }
+
+    /* ─── SECTION LABEL ─── */
+    .slabel {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--red);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .slabel::before {
+      content: '';
+      width: 24px;
+      height: 1px;
+      background: var(--red);
+      flex-shrink: 0;
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      position: relative;
+      min-height: calc(100vh - 64px);
+      background:
+        radial-gradient(ellipse 90% 80% at 75% 40%, rgba(38,54,18,0.55) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 15% 70%, rgba(18,26,8,0.6) 0%, transparent 55%),
+        radial-gradient(ellipse 40% 60% at 50% 10%, rgba(20,30,10,0.4) 0%, transparent 50%),
+        var(--olive-dark);
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.013) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.013) 1px, transparent 1px);
+      background-size: 56px 56px;
+      pointer-events: none;
+    }
+
+    .grain-layer {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .scan-line {
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(to right, transparent 0%, rgba(209,67,42,0.12) 40%, rgba(209,67,42,0.18) 50%, rgba(209,67,42,0.12) 60%, transparent 100%);
+      animation: scanDown 7s linear infinite;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    @keyframes scanDown {
+      0%   { top: -2px; opacity: 0; }
+      5%   { opacity: 1; }
+      95%  { opacity: 1; }
+      100% { top: 100%; opacity: 0; }
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 3;
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 64px;
+      align-items: center;
+      padding: 80px 0 96px;
+      width: 100%;
+    }
+
+    .hero-eyebrow {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--sand-dim);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      width: 20px;
+      height: 1px;
+      background: var(--sand-dim);
+    }
+
+    .hero-title {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      text-transform: uppercase;
+      line-height: 0.93;
+      letter-spacing: -0.02em;
+      margin-bottom: 28px;
+    }
+
+    .hero-line-1 {
+      font-size: clamp(2.8rem, 5.5vw, 5.5rem);
+      color: rgba(237,233,224,0.5);
+      display: block;
+    }
+
+    .hero-line-2 {
+      font-size: clamp(4.5rem, 9.5vw, 9.5rem);
+      color: var(--off-white);
+      display: block;
+      position: relative;
+    }
+    .hero-line-2::before {
+      content: '';
+      display: block;
+      width: 52px;
+      height: 3px;
+      background: var(--red);
+      margin-bottom: 10px;
+    }
+
+    .hero-line-3 {
+      font-size: clamp(2rem, 4vw, 4rem);
+      color: var(--sand);
+      display: block;
+    }
+
+    .hero-tagline {
+      font-size: 0.88rem;
+      color: rgba(237,233,224,0.55);
+      letter-spacing: 0.04em;
+      margin-bottom: 36px;
+      font-weight: 400;
+    }
+
+    .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    .hero-badge-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-badge {
+      width: 100%;
+      max-width: 340px;
+      height: auto;
+      filter:
+        drop-shadow(0 0 60px rgba(209,67,42,0.22))
+        drop-shadow(0 12px 48px rgba(0,0,0,0.7));
+      animation: badgeFloat 5s ease-in-out infinite;
+    }
+
+    @keyframes badgeFloat {
+      0%, 100% { transform: translateY(0) rotate(-1deg); }
+      50% { transform: translateY(-16px) rotate(1deg); }
+    }
+
+    /* ─── STATS BAR ─── */
+    .stats-bar {
+      background: var(--olive-base);
+      border-top: 1px solid var(--olive-border);
+      border-bottom: 1px solid var(--olive-border);
+      position: relative;
+    }
+    .stats-bar::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(to right, transparent, var(--red) 30%, var(--red) 70%, transparent);
+      opacity: 0.5;
+    }
+
+    .stats-inner {
+      display: flex;
+    }
+
+    .stat-item {
+      flex: 1;
+      padding: 32px 16px;
+      text-align: center;
+      border-right: 1px solid var(--olive-border);
+      position: relative;
+    }
+    .stat-item:last-child { border-right: none; }
+
+    .stat-num {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(2.2rem, 4vw, 3.4rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      color: var(--off-white);
+      display: block;
+    }
+
+    .stat-lbl {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--sand-dim);
+      margin-top: 8px;
+      display: block;
+    }
+
+    /* ─── SECTIONS ─── */
+    section { position: relative; }
+
+    .sec-dark  { background: var(--olive-dark); }
+    .sec-base  { background: var(--olive-base); }
+    .sec-mid   { background: var(--olive-mid); }
+
+    .sec-pad { padding: 96px 0; }
+    .sec-pad-sm { padding: 64px 0; }
+
+    /* ─── FIELD TEASER ─── */
+    .field-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .field-photo {
+      position: relative;
+      aspect-ratio: 4/3;
+      background: var(--olive-mid);
+      overflow: hidden;
+    }
+    .field-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .field-photo::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(10,12,7,0.3) 0%, transparent 50%);
+    }
+    .field-photo-badge {
+      position: absolute;
+      bottom: 16px;
+      left: 16px;
+      background: rgba(10,12,7,0.88);
+      border: 1px solid var(--olive-border);
+      padding: 10px 14px;
+      z-index: 2;
+      backdrop-filter: blur(8px);
+    }
+
+    /* ─── RENTAL KITS ─── */
+    .kit-card {
+      background: var(--olive-card);
+      border: 1px solid var(--olive-border);
+    }
+
+    .kit-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--olive-border);
+    }
+    .kit-item:last-child { border-bottom: none; }
+
+    .kit-dot {
+      flex-shrink: 0;
+      width: 8px;
+      height: 8px;
+      background: var(--red);
+      margin-top: 8px;
+      clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+    }
+
+    .price-badge {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 16px 24px;
+      background: var(--olive-mid);
+      border: 1px solid var(--olive-border);
+    }
+    .price-num {
+      font-family: 'Oswald', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      line-height: 1;
+      color: var(--off-white);
+    }
+    .price-lbl {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--sand-dim);
+      margin-top: 4px;
+    }
+    .price-save {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-top: 6px;
+    }
+
+    /* ─── EVENTS ─── */
+    .events-scroll {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+    }
+
+    .event-card {
+      background: var(--olive-card);
+      border: 1px solid var(--olive-border);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: border-color 0.2s, transform 0.2s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .event-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--red);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+    .event-card:hover {
+      border-color: var(--olive-hover);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.5), 0 0 20px var(--red-glow);
+    }
+    .event-card:hover::before { transform: scaleX(1); }
+
+    .event-type {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--sand-dim);
+    }
+
+    .date-badge {
+      display: inline-flex;
+      background: var(--red);
+      padding: 4px 10px;
+      clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 0 100%);
+    }
+    .date-text {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #fff;
+    }
+
+    .event-name {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      line-height: 1.2;
+      color: var(--off-white);
+      flex: 1;
+    }
+
+    .event-price {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--off-white);
+    }
+
+    /* ─── PRIVATE EVENTS ─── */
+    .private-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .feature-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--olive-border);
+    }
+    .feature-item:last-child { border-bottom: none; }
+
+    .feature-icon {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      background: rgba(209,67,42,0.12);
+      border: 1px solid rgba(209,67,42,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+    }
+
+    /* ─── SHOP TEASER ─── */
+    .shop-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .shop-card {
+      background: var(--olive-card);
+      border: 1px solid var(--olive-border);
+      aspect-ratio: 3/4;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transition: border-color 0.2s, transform 0.2s cubic-bezier(0.34,1.56,0.64,1);
+      cursor: pointer;
+    }
+    .shop-card:hover {
+      border-color: var(--olive-hover);
+      transform: translateY(-3px);
+    }
+
+    .shop-photo {
+      flex: 1;
+      background: var(--olive-mid);
+      position: relative;
+      overflow: hidden;
+    }
+    .shop-photo img { width: 100%; height: 100%; object-fit: cover; }
+    .shop-photo::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(10,12,7,0.7) 0%, transparent 50%);
+    }
+
+    .shop-info {
+      padding: 20px;
+      border-top: 1px solid var(--olive-border);
+    }
+
+    .shop-cat {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .shop-name {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--off-white);
+      margin-bottom: 2px;
+    }
+
+    .shop-sub {
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* ─── DISCORD ─── */
+    .discord-section {
+      background:
+        radial-gradient(ellipse 60% 80% at 50% 50%, rgba(38,54,18,0.4) 0%, transparent 70%),
+        var(--olive-base);
+      border-top: 1px solid var(--olive-border);
+      border-bottom: 1px solid var(--olive-border);
+    }
+
+    /* ─── PRICING ─── */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .pricing-card {
+      background: var(--olive-card);
+      border: 1px solid var(--olive-border);
+      padding: 32px;
+    }
+
+    .pricing-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--olive-border);
+    }
+    .pricing-row:last-child { border-bottom: none; }
+
+    .pricing-label {
+      font-size: 0.85rem;
+      color: rgba(237,233,224,0.7);
+      flex: 1;
+    }
+
+    .pricing-value {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--off-white);
+      white-space: nowrap;
+    }
+
+    .pricing-save {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--red);
+    }
+
+    /* ─── CONTACT ─── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 64px;
+    }
+
+    .form-field {
+      width: 100%;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--olive-border);
+      border-radius: 0;
+      color: var(--off-white);
+      padding: 13px 16px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.88rem;
+      outline: none;
+      transition: border-color 0.2s;
+      resize: none;
+    }
+    .form-field::placeholder { color: var(--muted); }
+    .form-field:focus { border-color: var(--olive-hover); }
+    .form-field:focus-visible { border-color: var(--red); box-shadow: 0 0 0 2px var(--red-glow); }
+
+    .contact-info-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--olive-border);
+    }
+    .contact-info-item:last-child { border-bottom: none; }
+
+    .contact-icon {
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      background: rgba(209,67,42,0.1);
+      border: 1px solid rgba(209,67,42,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2px;
+    }
+
+    .callout-waiver {
+      background: rgba(209,67,42,0.07);
+      border-left: 3px solid var(--red);
+      padding: 16px 20px;
+      margin-top: 24px;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--olive-base);
+      border-top: 1px solid var(--olive-border);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1.2fr;
+      gap: 64px;
+      padding: 64px 0 48px;
+    }
+
+    .footer-link {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(237,233,224,0.5);
+      display: block;
+      padding: 5px 0;
+      transition: color 0.2s;
+    }
+    .footer-link:hover { color: var(--off-white); }
+
+    .footer-bottom {
+      border-top: 1px solid var(--olive-border);
+      padding: 20px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .rainbow-stripe {
+      height: 4px;
+      background: linear-gradient(to right,
+        #e40303 0%,     #e40303 16.66%,
+        #ff8c00 16.66%, #ff8c00 33.33%,
+        #ffed00 33.33%, #ffed00 50%,
+        #008026 50%,    #008026 66.66%,
+        #004dff 66.66%, #004dff 83.33%,
+        #750787 83.33%, #750787 100%
+      );
+    }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .fade-up { animation: fadeUp 0.7s cubic-bezier(0.34,1.56,0.64,1) both; }
+    .d1 { animation-delay: 0.05s; }
+    .d2 { animation-delay: 0.15s; }
+    .d3 { animation-delay: 0.25s; }
+    .d4 { animation-delay: 0.35s; }
+    .d5 { animation-delay: 0.45s; }
+    .d6 { animation-delay: 0.55s; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1100px) {
+      .events-scroll { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; text-align: center; }
+      .hero-badge { max-width: 220px; margin: 0 auto; }
+      .hero-eyebrow, .slabel { justify-content: center; }
+      .hero-line-2::before { margin: 0 auto 10px; }
+      .hero-ctas { justify-content: center; }
+      .field-grid, .private-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .shop-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .nav-links, .btn-nav { display: none; }
+      .hamburger { display: flex; }
+      .events-scroll { grid-template-columns: repeat(2, 1fr); }
+      .stats-inner { flex-wrap: wrap; }
+      .stat-item { flex: 0 0 50%; border-right: none; border-bottom: 1px solid var(--olive-border); }
+      .stat-item:nth-child(1), .stat-item:nth-child(3) { border-right: 1px solid var(--olive-border); }
+      .stat-item:nth-child(3), .stat-item:nth-child(4) { border-bottom: none; }
+    }
+    @media (max-width: 520px) {
+      .events-scroll { grid-template-columns: 1fr; }
+      .shop-grid { grid-template-columns: 1fr; }
+      .container { padding: 0 20px; }
+      .sec-pad { padding: 64px 0; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── MOBILE MENU ─── -->
+<div id="mobile-menu" role="dialog" aria-label="Navigation menu">
+  <button id="close-menu" onclick="document.getElementById('mobile-menu').classList.remove('open')" aria-label="Close menu">✕ CLOSE</button>
+  <a href="index.html" class="mob-link">Home</a>
+  <a href="the-field.html" class="mob-link">Field</a>
+  <a href="tips.html" class="mob-link">Tips</a>
+  <a href="events.html" class="mob-link">Events</a>
+  <a href="rental-kits.html" class="mob-link">Rental Kits</a>
+  <a href="shop.html" class="mob-link">Shop</a>
+  <a href="private-events.html" class="mob-link">Private Events</a>
+</div>
+
+<!-- ─── NAV ─── -->
+<nav>
+  <div class="container nav-inner">
+    <a href="index.html" aria-label="Fredericton Airsoft Company — Home">
+      <img src="Assets/Fredericton Airsoft Company Logo.JPG" alt="FAC Logo" class="nav-logo">
+    </a>
+    <div class="nav-links">
+      <a href="index.html" class="nav-link active">Home</a>
+      <a href="the-field.html" class="nav-link">Field</a>
+      <a href="tips.html" class="nav-link">Tips</a>
+      <a href="events.html" class="nav-link">Events</a>
+      <a href="rental-kits.html" class="nav-link">Rental Kits</a>
+      <a href="shop.html" class="nav-link">Shop</a>
+      <a href="private-events.html" class="nav-link">Private Events</a>
+    </div>
+    <a href="https://www.facinc.ca/s/shop" class="btn-nav" target="_blank" rel="noopener">Shop Now →</a>
+    <button class="hamburger" id="hamburger-btn" aria-label="Open navigation menu" onclick="document.getElementById('mobile-menu').classList.add('open')">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section class="hero" aria-label="Hero">
+  <div class="hero-grid"></div>
+  <div class="scan-line"></div>
+
+  <!-- Grain SVG -->
+  <div class="grain-layer" aria-hidden="true">
+    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" style="opacity:0.038">
+      <filter id="grain">
+        <feTurbulence type="fractalNoise" baseFrequency="0.72" numOctaves="4" stitchTiles="stitch"/>
+        <feColorMatrix type="saturate" values="0"/>
+      </filter>
+      <rect width="100%" height="100%" filter="url(#grain)"/>
+    </svg>
+  </div>
+
+  <div class="container" style="position:relative; z-index:3; width:100%;">
+    <div class="hero-inner">
+      <!-- Left -->
+      <div>
+        <div class="hero-eyebrow fade-up d1">Fredericton, New Brunswick &nbsp;·&nbsp; Est. 2022</div>
+        <h1 class="hero-title">
+          <span class="hero-line-1 fade-up d2">Fredericton</span>
+          <span class="hero-line-2 fade-up d3">Airsoft</span>
+          <span class="hero-line-3 fade-up d4">Company Inc.</span>
+        </h1>
+        <p class="hero-tagline fade-up d5">Real People. Real Game. Real Community.</p>
+        <div class="hero-ctas fade-up d6">
+          <a href="events.html" class="btn-red">Find an Event &nbsp;→</a>
+          <a href="the-field.html" class="btn-outline">View the Field &nbsp;→</a>
+        </div>
+      </div>
+
+      <!-- Right: Logo Badge -->
+      <div class="hero-badge-wrap fade-up d4">
+        <img
+          src="Assets/Fredericton Airsoft Company Logo.JPG"
+          alt="Fredericton Airsoft Company badge — field map of West Wood 2023"
+          class="hero-badge"
+        >
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── STATS BAR ─── -->
+<div class="stats-bar">
+  <div class="container">
+    <div class="stats-inner">
+      <div class="stat-item">
+        <span class="stat-num">~60</span>
+        <span class="stat-lbl">Acres of Field</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">13+</span>
+        <span class="stat-lbl">Bases & Fields</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">3km</span>
+        <span class="stat-lbl">Of Marked Trails</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">20</span>
+        <span class="stat-lbl">Rental Kits Available</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── FIELD TEASER ─── -->
+<section class="sec-dark sec-pad">
+  <div class="container">
+    <div class="field-grid">
+      <!-- Photo -->
+      <div class="field-photo">
+        <img src="https://placehold.co/800x600/1a2210/323f20?text=FAC+Field" alt="FAC Field aerial view">
+        <div class="field-photo-badge">
+          <div class="slabel" style="margin-bottom:4px;">West Wood</div>
+          <div style="font-family:'Oswald',sans-serif; font-size:0.75rem; letter-spacing:0.1em; color:var(--sand-dim);">~18 acres · 13 bases</div>
+        </div>
+      </div>
+
+      <!-- Text -->
+      <div>
+        <div class="slabel">The Field</div>
+        <h2 style="font-size:clamp(2rem,3.5vw,3rem); font-weight:700; letter-spacing:-0.02em; margin-bottom:20px; color:var(--off-white);">
+          New Brunswick's<br><span style="color:var(--sand);">Largest</span> Airsoft Field
+        </h2>
+        <p style="color:rgba(237,233,224,0.65); margin-bottom:20px; font-size:0.9rem;">
+          At ~60 acres, our field is the largest in the province — divided into four areas:
+          <strong style="color:var(--off-white);">West Wood, East Wood, South Wood,</strong> and a <strong style="color:var(--off-white);">central Bog.</strong>
+        </p>
+        <p style="color:rgba(237,233,224,0.55); margin-bottom:32px; font-size:0.88rem; line-height:1.7;">
+          West Wood and East Wood are the most developed, with 13 bases and ~3km of marked trails between them. Every base, trail, and intersection has its own Location and Directional signs — you'll never be completely lost in the woods.
+        </p>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:36px;">
+          <div style="padding:14px; background:var(--olive-mid); border:1px solid var(--olive-border);">
+            <div style="font-family:'Oswald',sans-serif; font-size:0.6rem; letter-spacing:0.28em; text-transform:uppercase; color:var(--sand-dim); margin-bottom:4px;">West + East Wood</div>
+            <div style="font-family:'Oswald',sans-serif; font-size:1.1rem; font-weight:600; color:var(--off-white);">~26 Acres</div>
+          </div>
+          <div style="padding:14px; background:var(--olive-mid); border:1px solid var(--olive-border);">
+            <div style="font-family:'Oswald',sans-serif; font-size:0.6rem; letter-spacing:0.28em; text-transform:uppercase; color:var(--sand-dim); margin-bottom:4px;">Bases</div>
+            <div style="font-family:'Oswald',sans-serif; font-size:1.1rem; font-weight:600; color:var(--off-white);">13 Connected</div>
+          </div>
+        </div>
+
+        <a href="the-field.html" class="btn-outline">View Field Information &nbsp;→</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── RENTAL KITS ─── -->
+<section class="sec-mid sec-pad">
+  <div class="container">
+    <div style="text-align:center; margin-bottom:48px;">
+      <div class="slabel" style="justify-content:center;">Rental Kits</div>
+      <h2 style="font-size:clamp(2rem,3.5vw,3rem); font-weight:700; letter-spacing:-0.02em; color:var(--off-white);">
+        Everything You Need to <span style="color:var(--red);">Play</span>
+      </h2>
+      <p style="color:rgba(237,233,224,0.55); font-size:0.88rem; margin-top:12px; max-width:520px; margin-left:auto; margin-right:auto;">
+        20 full rental kits available per event — pre-book to save $10.
+      </p>
+    </div>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:32px; align-items:start;">
+      <!-- Kit Contents -->
+      <div class="kit-card" style="padding:32px;">
+        <div class="slabel" style="margin-bottom:20px;">Kit Includes</div>
+        <div class="kit-item">
+          <div class="kit-dot"></div>
+          <div>
+            <div style="font-family:'Oswald',sans-serif; font-size:0.9rem; font-weight:600; text-transform:uppercase; color:var(--off-white);">JT Proflex X Mask</div>
+            <div style="font-size:0.78rem; color:var(--muted); margin-top:2px;">Full face protection</div>
+          </div>
+        </div>
+        <div class="kit-item">
+          <div class="kit-dot"></div>
+          <div>
+            <div style="font-family:'Oswald',sans-serif; font-size:0.9rem; font-weight:600; text-transform:uppercase; color:var(--off-white);">M4-Style AEG</div>
+            <div style="font-size:0.78rem; color:var(--muted); margin-top:2px;">Automatic Electric Gun</div>
+          </div>
+        </div>
+        <div class="kit-item">
+          <div class="kit-dot"></div>
+          <div>
+            <div style="font-family:'Oswald',sans-serif; font-size:0.9rem; font-weight:600; text-transform:uppercase; color:var(--off-white);">Thunderstorm Drum Mag</div>
+            <div style="font-size:0.78rem; color:var(--muted); margin-top:2px;">~2000 BBs — Angle Custom</div>
+          </div>
+        </div>
+        <div class="kit-item">
+          <div class="kit-dot"></div>
+          <div>
+            <div style="font-family:'Oswald',sans-serif; font-size:0.9rem; font-weight:600; text-transform:uppercase; color:var(--off-white);">Hit Hat</div>
+            <div style="font-size:0.78rem; color:var(--muted); margin-top:2px;">Hit indicator</div>
+          </div>
+        </div>
+        <div class="kit-item">
+          <div class="kit-dot" style="background:rgba(196,165,123,0.8);"></div>
+          <div>
+            <div style="font-family:'Oswald',sans-serif; font-size:0.9rem; font-weight:600; text-transform:uppercase; color:var(--sand);">+ Tracer Unit &amp; Green BBs</div>
+            <div style="font-size:0.78rem; color:var(--muted); margin-top:2px;">Night Games only</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pricing -->
+      <div style="display:flex; flex-direction:column; gap:20px;">
+        <div class="kit-card" style="padding:28px;">
+          <div class="slabel" style="margin-bottom:16px;">Day & Night Game Kit</div>
+          <div style="display:flex; gap:16px; align-items:flex-end; margin-bottom:12px;">
+            <div class="price-badge">
+              <span class="price-num">$30</span>
+              <span class="price-lbl">Pre-booked</span>
+              <span class="price-save">Save $10</span>
+            </div>
+            <div style="color:var(--muted); font-size:0.82rem; padding-bottom:8px;">$40 day-of</div>
+          </div>
+          <div style="font-size:0.78rem; color:rgba(209,67,42,0.8); font-family:'Oswald',sans-serif; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:16px; font-size:0.68rem;">
+            ⚠ Admission not included in kit price
+          </div>
+          <a href="https://www.facinc.ca/rental-kits" class="btn-red" target="_blank" rel="noopener" style="width:100%; justify-content:center;">Reserve Rental Kit →</a>
+        </div>
+
+        <div class="kit-card" style="padding:28px;">
+          <div class="slabel" style="margin-bottom:16px;">Remote Rental Kit</div>
+          <div style="display:flex; gap:16px; align-items:flex-end; margin-bottom:16px;">
+            <div class="price-badge">
+              <span class="price-num">$40</span>
+              <span class="price-lbl">Pre-book Only</span>
+            </div>
+            <div style="font-size:0.78rem; color:var(--muted); padding-bottom:8px; line-height:1.5;">Must be pre-booked from<br>the Rental Kits tab</div>
+          </div>
+          <a href="rental-kits.html" class="btn-sand" style="width:100%; justify-content:center;">See All Kit Dates →</a>
+        </div>
+
+        <div style="background:rgba(209,67,42,0.07); border:1px solid rgba(209,67,42,0.2); padding:16px 20px;">
+          <div style="font-family:'Oswald',sans-serif; font-size:0.68rem; letter-spacing:0.22em; text-transform:uppercase; color:var(--red); margin-bottom:6px;">Important</div>
+          <p style="font-size:0.8rem; color:rgba(237,233,224,0.65);">Pre-booking closes at <strong style="color:var(--off-white);">11:55pm the night before</strong> the event.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── UPCOMING EVENTS ─── -->
+<section class="sec-dark sec-pad">
+  <div class="container">
+    <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:36px; flex-wrap:wrap; gap:16px;">
+      <div>
+        <div class="slabel">2026 Schedule</div>
+        <h2 style="font-size:clamp(1.8rem,3vw,2.6rem); font-weight:700; letter-spacing:-0.02em; color:var(--off-white);">Upcoming Events</h2>
+      </div>
+      <a href="events.html" class="btn-sand">View All Events →</a>
+    </div>
+
+    <div class="events-scroll">
+      <!-- Event 1 -->
+      <div class="event-card">
+        <span class="event-type">Night Games</span>
+        <div class="date-badge"><span class="date-text">Jun 2, 2026</span></div>
+        <p class="event-name">Night Games — June 2nd</p>
+        <span class="event-price">CAD $17.39</span>
+        <span style="font-size:0.72rem; color:var(--muted);">$25 at the door</span>
+        <a href="https://www.facinc.ca/product/pre-register-june-2nd-2026-night-games/BF6WK75KJF5U6K5PMJ325GRK" class="btn-red" target="_blank" rel="noopener" style="margin-top:4px; justify-content:center; font-size:0.72rem; padding:10px 16px;">Pre-Register →</a>
+      </div>
+
+      <!-- Event 2 -->
+      <div class="event-card">
+        <span class="event-type">Special Game</span>
+        <div class="date-badge"><span class="date-text">Jun 6, 2026</span></div>
+        <p class="event-name">Gold Rush</p>
+        <span class="event-price">CAD $17.39</span>
+        <span style="font-size:0.72rem; color:var(--muted);">$25 at the door</span>
+        <a href="https://www.facinc.ca/product/pre-register-june-6th-2026-gold-rush/TKDRZQZ64EQJFUJXRYEXQTD3" class="btn-red" target="_blank" rel="noopener" style="margin-top:4px; justify-content:center; font-size:0.72rem; padding:10px 16px;">Pre-Register →</a>
+      </div>
+
+      <!-- Event 3 -->
+      <div class="event-card">
+        <span class="event-type">Beginner Friendly</span>
+        <div class="date-badge"><span class="date-text">Jun 13, 2026</span></div>
+        <p class="event-name">Beginners Day</p>
+        <span class="event-price">CAD $17.39</span>
+        <span style="font-size:0.72rem; color:var(--muted);">$25 at the door</span>
+        <a href="https://www.facinc.ca/product/pre-register-june-13th-2026-beginners-day/JCWQ33HPIQGGSFG2DZQQLFTQ" class="btn-red" target="_blank" rel="noopener" style="margin-top:4px; justify-content:center; font-size:0.72rem; padding:10px 16px;">Pre-Register →</a>
+      </div>
+
+      <!-- Event 4 -->
+      <div class="event-card">
+        <span class="event-type">Special Game</span>
+        <div class="date-badge"><span class="date-text">Jun 20, 2026</span></div>
+        <p class="event-name">Father's Day Game</p>
+        <span class="event-price">CAD $17.39</span>
+        <span style="font-size:0.72rem; color:var(--muted);">$25 at the door</span>
+        <a href="https://www.facinc.ca/product/pre-register-june-20th-2026-father-s-day-game/NFHQCPSEO53KENH6IRKKOZ4J" class="btn-red" target="_blank" rel="noopener" style="margin-top:4px; justify-content:center; font-size:0.72rem; padding:10px 16px;">Pre-Register →</a>
+      </div>
+
+      <!-- Event 5: Op Lion's Den (featured) -->
+      <div class="event-card" style="border-color:rgba(209,67,42,0.4); background:rgba(209,67,42,0.05);">
+        <span class="event-type" style="color:var(--red);">Milsim Event</span>
+        <div class="date-badge"><span class="date-text">Jun 27, 2026</span></div>
+        <p class="event-name" style="color:var(--off-white);">Op: Lion's Den</p>
+        <span class="event-price" style="color:var(--sand);">CAD $52.17+</span>
+        <span style="font-size:0.72rem; color:rgba(209,67,42,0.7);">No rentals for this event</span>
+        <a href="https://www.facinc.ca/product/op-lion-s-den-june-27th-early-bird/CMIN24WM55BYODJEHIMGSHZ7" class="btn-red" target="_blank" rel="noopener" style="margin-top:4px; justify-content:center; font-size:0.72rem; padding:10px 16px;">Early Bird →</a>
+      </div>
+    </div>
+
+    <!-- Pricing reminder -->
+    <div style="margin-top:32px; padding:20px 24px; background:var(--olive-mid); border:1px solid var(--olive-border); display:flex; gap:32px; flex-wrap:wrap; align-items:center; justify-content:space-between;">
+      <div>
+        <span style="font-family:'Oswald',sans-serif; font-size:0.65rem; letter-spacing:0.26em; text-transform:uppercase; color:var(--sand-dim);">Pricing — taxes included</span>
+        <p style="font-size:0.82rem; color:rgba(237,233,224,0.65); margin-top:4px;">
+          Admission: <strong style="color:var(--off-white);">$20 pre-reg</strong> / $25 door &nbsp;·&nbsp;
+          Rental Kit: <strong style="color:var(--off-white);">$30 pre-booked</strong> / $40 day-of &nbsp;·&nbsp;
+          Rental + Admission bundle: <strong style="color:var(--off-white);">$43.48 pre-booked</strong>
+        </p>
+      </div>
+      <a href="events.html" class="btn-outline" style="white-space:nowrap;">Full Schedule →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PRIVATE EVENTS ─── -->
+<section class="sec-mid sec-pad" style="background: radial-gradient(ellipse 70% 80% at 80% 50%, rgba(38,54,18,0.6) 0%, transparent 65%), var(--olive-mid);">
+  <div class="container">
+    <div class="private-grid">
+      <!-- Text -->
+      <div>
+        <div class="slabel">Private Bookings</div>
+        <h2 style="font-size:clamp(2rem,3.5vw,3rem); font-weight:700; letter-spacing:-0.02em; color:var(--off-white); margin-bottom:20px;">
+          Book the Field<br><span style="color:var(--sand);">for Your Crew</span>
+        </h2>
+        <p style="color:rgba(237,233,224,0.6); font-size:0.88rem; margin-bottom:36px; line-height:1.75;">
+          Great for birthday parties, team-building, and group outings. We offer both Airsoft AND Nerf for private events — bringing the action to all ages.
+        </p>
+
+        <div>
+          <div class="feature-item">
+            <div class="feature-icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <div>
+              <div style="font-family:'Oswald',sans-serif; font-size:0.9rem; font-weight:600; text-transform:uppercase; color:var(--off-white);">Airsoft &amp; Nerf Available</div>
+              <div style="font-size:0.8rem; color:var(--muted); margin-top:3px;">Suitable for all ages and experience levels</div>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+            </div>
+            <div>
+              <div style="font-family:'Oswald',sans-serif; font-size:0.9rem; font-weight:600; text-transform:uppercase; color:var(--off-white);">Grill &amp; Picnic Tables</div>
+              <div style="font-size:0.8rem; color:var(--muted); margin-top:3px;">On-site facilities for your group</div>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div>
+              <div style="font-family:'Oswald',sans-serif; font-size:0.9rem; font-weight:600; text-transform:uppercase; color:var(--off-white);">Bottled Water Included</div>
+              <div style="font-size:0.8rem; color:var(--muted); margin-top:3px;">At every public and private event</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:36px; display:flex; gap:12px; flex-wrap:wrap;">
+          <a href="private-events.html" class="btn-red">Book a Private Game →</a>
+          <a href="mailto:frederictonairsoftcompany@gmail.com" class="btn-outline">Email Us →</a>
+        </div>
+      </div>
+
+      <!-- Photo -->
+      <div style="position:relative; aspect-ratio:4/5; background:var(--olive-dark); overflow:hidden;">
+        <img src="https://placehold.co/640x800/1a2210/323f20?text=Private+Events" alt="Private airsoft event" style="width:100%; height:100%; object-fit:cover;">
+        <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(10,12,7,0.7) 0%, transparent 50%);"></div>
+        <div style="position:absolute; bottom:20px; left:20px; right:20px;">
+          <div style="font-family:'Oswald',sans-serif; font-size:1.4rem; font-weight:700; text-transform:uppercase; color:var(--off-white);">Birthdays · Teams · Parties</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SHOP TEASER ─── -->
+<section class="sec-dark sec-pad">
+  <div class="container">
+    <div style="text-align:center; margin-bottom:48px;">
+      <div class="slabel" style="justify-content:center;">Online Shop</div>
+      <h2 style="font-size:clamp(1.8rem,3vw,2.6rem); font-weight:700; letter-spacing:-0.02em; color:var(--off-white);">Mobile Shop at Events</h2>
+      <p style="color:rgba(237,233,224,0.5); font-size:0.85rem; margin-top:10px;">Buy online — pick up at the field</p>
+    </div>
+
+    <div class="shop-grid">
+      <!-- BBs -->
+      <a href="shop.html" class="shop-card">
+        <div class="shop-photo">
+          <img src="https://placehold.co/400x500/202a12/323f20?text=BBs" alt="Airsoft BBs">
+        </div>
+        <div class="shop-info">
+          <span class="shop-cat">Ammunition</span>
+          <div class="shop-name">BBs</div>
+          <div class="shop-sub">.20g – .48g · Tracer variants available</div>
+        </div>
+      </a>
+
+      <!-- Gas -->
+      <a href="shop.html#gas" class="shop-card">
+        <div class="shop-photo">
+          <img src="https://placehold.co/400x500/202a12/323f20?text=Green+Gas" alt="Green Gas">
+        </div>
+        <div class="shop-info">
+          <span class="shop-cat">Propellant</span>
+          <div class="shop-name">Green Gas</div>
+          <div class="shop-sub">Elite Force 8oz · Ultrair 8.5oz · from $17.39</div>
+        </div>
+      </a>
+
+      <!-- Accessories -->
+      <a href="shop.html#accessories" class="shop-card">
+        <div class="shop-photo">
+          <img src="https://placehold.co/400x500/202a12/323f20?text=Gear+%26+More" alt="Grenades and patches">
+        </div>
+        <div class="shop-info">
+          <span class="shop-cat">Accessories</span>
+          <div class="shop-name">Gear &amp; More</div>
+          <div class="shop-sub">Smoke grenades · Patches · Rental gear</div>
+        </div>
+      </a>
+    </div>
+
+    <div style="text-align:center; margin-top:36px;">
+      <a href="https://www.facinc.ca/s/shop" class="btn-red" target="_blank" rel="noopener">Visit Full Shop →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── DISCORD COMMUNITY ─── -->
+<section class="discord-section sec-pad-sm">
+  <div class="container" style="text-align:center;">
+    <div class="slabel" style="justify-content:center; margin-bottom:20px;">Community</div>
+    <h2 style="font-size:clamp(1.8rem,3.5vw,2.8rem); font-weight:700; letter-spacing:-0.02em; color:var(--off-white); margin-bottom:14px;">
+      Find Your <span style="color:var(--sand);">Squad</span>
+    </h2>
+    <p style="color:rgba(237,233,224,0.55); font-size:0.88rem; max-width:520px; margin:0 auto 32px; line-height:1.75;">
+      Make new friends, organize a team and get advice from players on gear and repairs on our Discord server.
+    </p>
+    <a href="https://discord.gg" class="btn-outline" target="_blank" rel="noopener" style="margin-right:12px;">Join our Discord →</a>
+    <a href="https://www.instagram.com/frederictonairsoftcompany" class="btn-sand" target="_blank" rel="noopener">@frederictonairsoftcompany →</a>
+  </div>
+</section>
+
+<!-- ─── PRICING BREAKDOWN ─── -->
+<section class="sec-dark sec-pad">
+  <div class="container">
+    <div style="text-align:center; margin-bottom:48px;">
+      <div class="slabel" style="justify-content:center;">Pricing Guide</div>
+      <h2 style="font-size:clamp(1.8rem,3vw,2.6rem); font-weight:700; letter-spacing:-0.02em; color:var(--off-white);">
+        Public Event Pricing
+      </h2>
+      <p style="color:rgba(237,233,224,0.5); font-size:0.82rem; margin-top:8px;">All prices include taxes</p>
+    </div>
+
+    <div class="pricing-grid">
+      <!-- Admission -->
+      <div class="pricing-card">
+        <div class="slabel" style="margin-bottom:20px;">Admission</div>
+        <div class="pricing-row">
+          <span class="pricing-label">Pre-registered (online)</span>
+          <span class="pricing-value">$20 <span class="pricing-save">· SAVE $5</span></span>
+        </div>
+        <div class="pricing-row">
+          <span class="pricing-label">Regular day-of admission</span>
+          <span class="pricing-value">$25</span>
+        </div>
+        <div class="pricing-row" style="border-bottom:none; padding-top:20px; padding-bottom:0;">
+          <a href="events.html" class="btn-red" style="width:100%; justify-content:center;">Pre-Register Now →</a>
+        </div>
+      </div>
+
+      <!-- Rental Kits -->
+      <div class="pricing-card">
+        <div class="slabel" style="margin-bottom:20px;">Rental Kits</div>
+        <div class="pricing-row">
+          <span class="pricing-label">Day/Night Kit — pre-booked</span>
+          <span class="pricing-value">$30 <span class="pricing-save">· SAVE $10</span></span>
+        </div>
+        <div class="pricing-row">
+          <span class="pricing-label">Day/Night Kit — day-of</span>
+          <span class="pricing-value">$40</span>
+        </div>
+        <div class="pricing-row">
+          <span class="pricing-label">Remote Rental Kit</span>
+          <span class="pricing-value">$40 <span style="font-size:0.62rem; color:var(--sand-dim); letter-spacing:0.1em;">PRE-BOOK ONLY</span></span>
+        </div>
+        <div style="margin-top:12px; padding:12px 14px; background:rgba(209,67,42,0.07); border-left:2px solid var(--red);">
+          <p style="font-size:0.76rem; color:rgba(237,233,224,0.55); line-height:1.5;">Admission is not included in the rental kit price. Kit + Admission bundles available from <strong style="color:var(--off-white);">$43.48 pre-booked.</strong></p>
+        </div>
+        <div style="padding-top:20px;">
+          <a href="rental-kits.html" class="btn-outline" style="width:100%; justify-content:center;">Book a Rental Kit →</a>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:20px; padding:16px 24px; background:var(--olive-mid); border:1px solid var(--olive-border); text-align:center;">
+      <p style="font-size:0.8rem; color:rgba(237,233,224,0.5); line-height:1.6;">
+        <span style="font-family:'Oswald',sans-serif; letter-spacing:0.12em; text-transform:uppercase; color:var(--red); font-size:0.68rem;">Note: </span>
+        Pre-booking closes at <strong style="color:var(--off-white);">11:55pm the night before the event.</strong>
+        &nbsp;·&nbsp; Bottled water included at every event.
+        &nbsp;·&nbsp; Free HPA fills at the field.
+        &nbsp;·&nbsp; <strong style="color:var(--off-white);">No Cash</strong> — Debit / Credit / Apple Pay / Google Pay only.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CONTACT + WAIVER ─── -->
+<section class="sec-mid sec-pad" id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <!-- Form -->
+      <div>
+        <div class="slabel">Get In Touch</div>
+        <h2 style="font-size:clamp(1.8rem,3vw,2.4rem); font-weight:700; letter-spacing:-0.02em; color:var(--off-white); margin-bottom:8px;">Contact Us</h2>
+        <p style="color:rgba(237,233,224,0.5); font-size:0.85rem; margin-bottom:32px;">Questions about events, booking a private game, or anything else — reach out.</p>
+
+        <form action="mailto:frederictonairsoftcompany@gmail.com" method="POST" enctype="text/plain" style="display:flex; flex-direction:column; gap:14px;">
+          <input type="text" name="name" placeholder="Full Name" class="form-field" required aria-label="Full name">
+          <input type="email" name="email" placeholder="Email Address" class="form-field" required aria-label="Email address">
+          <textarea name="message" placeholder="Your message..." class="form-field" rows="5" required aria-label="Message"></textarea>
+          <button type="submit" class="btn-red" style="align-self:flex-start; padding:13px 36px;">Send Message →</button>
+        </form>
+      </div>
+
+      <!-- Info + Waiver -->
+      <div>
+        <div class="slabel">Contact Info</div>
+        <h2 style="font-size:clamp(1.4rem,2.5vw,2rem); font-weight:700; letter-spacing:-0.02em; color:var(--off-white); margin-bottom:28px;">We'd love to hear from you</h2>
+
+        <div>
+          <div class="contact-info-item">
+            <div class="contact-icon" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.15 10.8 19.79 19.79 0 01.07 2.18 2 2 0 012.06 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg>
+            </div>
+            <div>
+              <div style="font-family:'Oswald',sans-serif; font-size:0.65rem; letter-spacing:0.26em; text-transform:uppercase; color:var(--muted); margin-bottom:4px;">Phone</div>
+              <a href="tel:15062613689" style="font-size:1rem; font-family:'Oswald',sans-serif; font-weight:600; color:var(--off-white); letter-spacing:0.04em; transition:color 0.2s;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--off-white)'">1-506-261-3689</a>
+            </div>
+          </div>
+
+          <div class="contact-info-item">
+            <div class="contact-icon" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div>
+              <div style="font-family:'Oswald',sans-serif; font-size:0.65rem; letter-spacing:0.26em; text-transform:uppercase; color:var(--muted); margin-bottom:4px;">Email</div>
+              <a href="mailto:frederictonairsoftcompany@gmail.com" style="font-size:0.85rem; color:var(--sand); transition:color 0.2s; word-break:break-all;" onmouseover="this.style.color='var(--off-white)'" onmouseout="this.style.color='var(--sand)'">frederictonairsoftcompany@gmail.com</a>
+            </div>
+          </div>
+
+          <div class="contact-info-item">
+            <div class="contact-icon" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </div>
+            <div>
+              <div style="font-family:'Oswald',sans-serif; font-size:0.65rem; letter-spacing:0.26em; text-transform:uppercase; color:var(--muted); margin-bottom:4px;">Instagram</div>
+              <a href="https://www.instagram.com/frederictonairsoftcompany" target="_blank" rel="noopener" style="font-size:0.88rem; color:var(--sand); transition:color 0.2s;" onmouseover="this.style.color='var(--off-white)'" onmouseout="this.style.color='var(--sand)'">@frederictonairsoftcompany</a>
+            </div>
+          </div>
+
+          <div class="contact-info-item" style="border-bottom:none;">
+            <div class="contact-icon" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <div style="font-family:'Oswald',sans-serif; font-size:0.65rem; letter-spacing:0.26em; text-transform:uppercase; color:var(--muted); margin-bottom:4px;">Field Location</div>
+              <p style="font-size:0.82rem; color:rgba(237,233,224,0.65); line-height:1.5;">154 Lower Durham Rd<br>Durham Bridge, NB E6C 1H6<br><span style="color:var(--muted); font-size:0.76rem;">~2km down Banks Road (dirt road)</span></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="callout-waiver">
+          <div style="font-family:'Oswald',sans-serif; font-size:0.65rem; letter-spacing:0.26em; text-transform:uppercase; color:var(--red); margin-bottom:8px;">Waiver &amp; Disclaimer</div>
+          <p style="font-size:0.8rem; color:rgba(237,233,224,0.65); line-height:1.6; margin-bottom:12px;">Children under 19 whose parents aren't driving them must have waivers pre-signed and sent with them — <strong style="color:var(--off-white);">or they won't be allowed to play.</strong></p>
+          <a href="https://www.facinc.ca" class="btn-sand" target="_blank" rel="noopener">Download Waiver ↓</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <!-- Brand -->
+      <div>
+        <img src="Assets/Fredericton Airsoft Company Logo.JPG" alt="FAC Logo" style="height:60px; width:auto; object-fit:contain; margin-bottom:16px;">
+        <div style="font-family:'Oswald',sans-serif; font-size:0.72rem; letter-spacing:0.22em; text-transform:uppercase; color:var(--sand-dim); margin-bottom:8px;">Fredericton Airsoft Company Inc.</div>
+        <p style="font-size:0.82rem; color:rgba(237,233,224,0.4); line-height:1.6; max-width:280px;">
+          Real People. Real Game. Real Community.<br>
+          New Brunswick's largest airsoft field — built for the players, by the players.
+        </p>
+      </div>
+
+      <!-- Nav -->
+      <div>
+        <div style="font-family:'Oswald',sans-serif; font-size:0.65rem; letter-spacing:0.28em; text-transform:uppercase; color:var(--muted); margin-bottom:16px;">Navigation</div>
+        <a href="index.html" class="footer-link">Home</a>
+        <a href="the-field.html" class="footer-link">The Field</a>
+        <a href="tips.html" class="footer-link">Tips for Beginners</a>
+        <a href="events.html" class="footer-link">Events</a>
+        <a href="rental-kits.html" class="footer-link">Rental Kits</a>
+        <a href="shop.html" class="footer-link">Shop</a>
+        <a href="private-events.html" class="footer-link">Private Events</a>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <div style="font-family:'Oswald',sans-serif; font-size:0.65rem; letter-spacing:0.28em; text-transform:uppercase; color:var(--muted); margin-bottom:16px;">Contact</div>
+        <a href="tel:15062613689" class="footer-link" style="color:rgba(237,233,224,0.6);">1-506-261-3689</a>
+        <a href="mailto:frederictonairsoftcompany@gmail.com" class="footer-link" style="word-break:break-all;">frederictonairsoftcompany@gmail.com</a>
+        <a href="https://www.instagram.com/frederictonairsoftcompany" class="footer-link" target="_blank" rel="noopener">@frederictonairsoftcompany</a>
+        <div style="margin-top:16px; padding:12px 14px; background:rgba(255,255,255,0.03); border:1px solid var(--olive-border);">
+          <div style="font-family:'Oswald',sans-serif; font-size:0.6rem; letter-spacing:0.22em; text-transform:uppercase; color:var(--muted); margin-bottom:4px;">Field Address</div>
+          <p style="font-size:0.78rem; color:rgba(237,233,224,0.45); line-height:1.5;">154 Lower Durham Rd<br>Durham Bridge, NB E6C 1H6</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="footer-bottom">
+      <p style="font-size:0.72rem; color:var(--muted);">© 2026 Fredericton Airsoft Company Inc. All rights reserved.</p>
+      <p style="font-size:0.68rem; color:var(--muted); letter-spacing:0.1em; font-family:'Oswald',sans-serif; text-transform:uppercase;">Must be 10+ to play</p>
+    </div>
+  </div>
+
+  <!-- Rainbow pride stripe -->
+  <div class="rainbow-stripe"></div>
+</footer>
+
+<script>
+  // Hamburger toggle
+  const hamburger = document.getElementById('hamburger-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const closeBtn = document.getElementById('close-menu');
+
+  hamburger.addEventListener('click', () => mobileMenu.classList.add('open'));
+  closeBtn.addEventListener('click', () => mobileMenu.classList.remove('open'));
+
+  // Close mobile menu on link click
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => mobileMenu.classList.remove('open'));
+  });
+
+  // Close on Escape key
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') mobileMenu.classList.remove('open');
+  });
+</script>
+</body>
+</html>

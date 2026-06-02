@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rental Kits — Fredericton Airsoft Company Inc.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root{--red:#d1432a;--red-dark:#a8341f;--red-glow:rgba(209,67,42,0.2);--olive-dark:#0a0c07;--olive-base:#12160c;--olive-mid:#1a2210;--olive-card:#202a12;--olive-border:#323f20;--olive-hover:#46582e;--sand:#c4a57b;--sand-dim:#8a7258;--off-white:#ede9e0;--muted:#5a5a4a}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:'Inter',sans-serif;background:var(--olive-dark);color:var(--off-white);line-height:1.75;overflow-x:hidden}
+    h1,h2,h3,h4{font-family:'Oswald',sans-serif;text-transform:uppercase;line-height:1.05}
+    a{text-decoration:none;color:inherit}
+    .container{max-width:1280px;margin:0 auto;padding:0 32px}
+    nav{position:sticky;top:0;z-index:50;height:64px;background:rgba(10,12,7,0.94);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.05)}
+    .nav-inner{height:100%;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .nav-logo{height:44px;width:auto;object-fit:contain;flex-shrink:0;transition:opacity 0.2s}.nav-logo:hover{opacity:0.85}
+    .nav-links{display:flex;align-items:center;gap:24px;flex:1;justify-content:center}
+    .nav-link{font-family:'Oswald',sans-serif;font-size:0.75rem;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:rgba(237,233,224,0.6);position:relative;padding:4px 0;transition:color 0.2s;white-space:nowrap}
+    .nav-link::after{content:'';position:absolute;bottom:-1px;left:0;width:0;height:1px;background:var(--red);transition:width 0.25s ease}
+    .nav-link:hover,.nav-link.active{color:var(--off-white)}.nav-link:hover::after,.nav-link.active::after{width:100%}
+    .btn-nav{font-family:'Oswald',sans-serif;font-size:0.72rem;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;background:var(--red);color:#fff;padding:9px 20px;white-space:nowrap;flex-shrink:0;clip-path:polygon(0 0,calc(100% - 6px) 0,100% 6px,100% 100%,6px 100%,0 calc(100% - 6px));transition:background 0.2s,transform 0.15s cubic-bezier(0.34,1.56,0.64,1)}
+    .btn-nav:hover{background:var(--red-dark);transform:translateY(-1px)}
+    .hamburger{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:6px}
+    .hamburger span{display:block;width:22px;height:1.5px;background:var(--off-white)}
+    #mobile-menu{display:none;position:fixed;inset:0;z-index:99;background:var(--olive-dark);flex-direction:column;align-items:center;justify-content:center;gap:32px}
+    #mobile-menu.open{display:flex}
+    .mob-link{font-family:'Oswald',sans-serif;font-size:2rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--off-white);transition:color 0.15s}.mob-link:hover{color:var(--red)}
+    #close-menu{position:absolute;top:20px;right:28px;background:none;border:none;color:var(--off-white);font-size:1.5rem;cursor:pointer;font-family:'Oswald',sans-serif}
+    .btn-red{display:inline-flex;align-items:center;gap:8px;background:var(--red);color:#fff;font-family:'Oswald',sans-serif;font-size:0.82rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;padding:13px 28px;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px));transition:background 0.2s,transform 0.15s cubic-bezier(0.34,1.56,0.64,1);cursor:pointer;border:none}
+    .btn-red:hover{background:var(--red-dark);transform:translateY(-2px)}
+    .btn-red-sm{display:inline-flex;align-items:center;justify-content:center;gap:6px;background:var(--red);color:#fff;font-family:'Oswald',sans-serif;font-size:0.72rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;padding:10px 18px;clip-path:polygon(0 0,calc(100% - 6px) 0,100% 6px,100% 100%,6px 100%,0 calc(100% - 6px));transition:background 0.2s,transform 0.15s cubic-bezier(0.34,1.56,0.64,1);cursor:pointer;border:none;width:100%}
+    .btn-red-sm:hover{background:var(--red-dark);transform:translateY(-1px)}
+    .slabel{font-family:'Oswald',sans-serif;font-size:0.65rem;font-weight:500;letter-spacing:0.32em;text-transform:uppercase;color:var(--red);display:flex;align-items:center;gap:10px;margin-bottom:16px}
+    .slabel::before{content:'';width:24px;height:1px;background:var(--red);flex-shrink:0}
+    .page-hero{position:relative;min-height:44vh;background:radial-gradient(ellipse 100% 100% at 50% 0%,rgba(38,54,18,0.55) 0%,transparent 60%),var(--olive-dark);display:flex;align-items:flex-end;overflow:hidden}
+    .page-hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.012) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.012) 1px,transparent 1px);background-size:56px 56px}
+    .page-hero-content{position:relative;z-index:2;padding:64px 0;width:100%}
+    .sec-pad{padding:96px 0}.sec-pad-sm{padding:64px 0}
+    .sec-dark{background:var(--olive-dark)}.sec-base{background:var(--olive-base)}.sec-mid{background:var(--olive-mid)}
+
+    .kit-check{display:flex;gap:14px;align-items:flex-start;padding:14px 0;border-bottom:1px solid var(--olive-border)}
+    .kit-check:last-child{border-bottom:none}
+    .kit-dot{flex-shrink:0;width:8px;height:8px;background:var(--red);margin-top:8px;clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)}
+    .kit-dot-sand{flex-shrink:0;width:8px;height:8px;background:var(--sand-dim);margin-top:8px;clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)}
+
+    .booking-table{width:100%;border-collapse:collapse}
+    .booking-table th{font-family:'Oswald',sans-serif;font-size:0.62rem;letter-spacing:0.24em;text-transform:uppercase;color:var(--muted);padding:10px 16px;text-align:left;border-bottom:1px solid var(--olive-border)}
+    .booking-table td{padding:14px 16px;border-bottom:1px solid var(--olive-border);font-size:0.85rem;color:rgba(237,233,224,0.75)}
+    .booking-table tr:last-child td{border-bottom:none}
+    .booking-table tr:hover td{background:rgba(255,255,255,0.02)}
+    .booking-table .event-name-cell{font-family:'Oswald',sans-serif;font-size:0.88rem;font-weight:500;text-transform:uppercase;color:var(--off-white)}
+    .booking-table .price-cell{font-family:'Oswald',sans-serif;font-size:0.95rem;font-weight:700;color:var(--off-white)}
+    .booking-table .special-row td{background:rgba(196,165,123,0.04)}
+    .booking-table .special-row .price-cell{color:var(--sand)}
+
+    footer{background:var(--olive-base);border-top:1px solid var(--olive-border)}
+    .footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1.2fr;gap:64px;padding:64px 0 48px}
+    .footer-link{font-family:'Oswald',sans-serif;font-size:0.75rem;font-weight:400;letter-spacing:0.12em;text-transform:uppercase;color:rgba(237,233,224,0.5);display:block;padding:5px 0;transition:color 0.2s}
+    .footer-link:hover{color:var(--off-white)}
+    .footer-bottom{border-top:1px solid var(--olive-border);padding:20px 0;display:flex;justify-content:space-between;align-items:center}
+    .rainbow-stripe{height:4px;background:linear-gradient(to right,#e40303 0%,#e40303 16.66%,#ff8c00 16.66%,#ff8c00 33.33%,#ffed00 33.33%,#ffed00 50%,#008026 50%,#008026 66.66%,#004dff 66.66%,#004dff 83.33%,#750787 83.33%,#750787 100%)}
+
+    @media(max-width:768px){.nav-links,.btn-nav{display:none}.hamburger{display:flex}.footer-grid{grid-template-columns:1fr;gap:32px}}
+    @media(max-width:600px){.booking-table{font-size:0.8rem}.booking-table th,.booking-table td{padding:10px 10px}}
+  </style>
+</head>
+<body>
+<div id="mobile-menu" role="dialog">
+  <button id="close-menu" onclick="document.getElementById('mobile-menu').classList.remove('open')">✕ CLOSE</button>
+  <a href="index.html" class="mob-link">Home</a><a href="the-field.html" class="mob-link">Field</a>
+  <a href="tips.html" class="mob-link">Tips</a><a href="events.html" class="mob-link">Events</a>
+  <a href="rental-kits.html" class="mob-link">Rental Kits</a><a href="shop.html" class="mob-link">Shop</a>
+  <a href="private-events.html" class="mob-link">Private Events</a>
+</div>
+<nav>
+  <div class="container nav-inner">
+    <a href="index.html"><img src="Assets/Fredericton Airsoft Company Logo.JPG" alt="FAC Logo" class="nav-logo"></a>
+    <div class="nav-links">
+      <a href="index.html" class="nav-link">Home</a><a href="the-field.html" class="nav-link">Field</a>
+      <a href="tips.html" class="nav-link">Tips</a><a href="events.html" class="nav-link">Events</a>
+      <a href="rental-kits.html" class="nav-link active">Rental Kits</a><a href="shop.html" class="nav-link">Shop</a>
+      <a href="private-events.html" class="nav-link">Private Events</a>
+    </div>
+    <a href="https://www.facinc.ca/s/shop" class="btn-nav" target="_blank" rel="noopener">Shop Now →</a>
+    <button class="hamburger" onclick="document.getElementById('mobile-menu').classList.add('open')"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-grid"></div>
+  <div class="page-hero-content">
+    <div class="container">
+      <div class="slabel">Gear Up</div>
+      <h1 style="font-size:clamp(2.5rem,6vw,5rem);font-weight:700;letter-spacing:-0.02em;color:var(--off-white);max-width:700px;">
+        Rental <span style="color:var(--sand);">Kits</span>
+      </h1>
+      <p style="color:rgba(237,233,224,0.55);font-size:0.9rem;margin-top:14px;max-width:500px;">
+        20 full kits available per event. Pre-book to save $10. All you need to play — just show up.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- KIT OVERVIEW -->
+<section class="sec-dark sec-pad">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1.1fr 0.9fr;gap:64px;align-items:start;">
+      <!-- Contents -->
+      <div>
+        <div class="slabel">What's Included</div>
+        <h2 style="font-size:clamp(1.8rem,3vw,2.6rem);font-weight:700;letter-spacing:-0.02em;color:var(--off-white);margin-bottom:32px;">Full Rental Kit</h2>
+
+        <div style="background:var(--olive-card);border:1px solid var(--olive-border);padding:32px;">
+          <div class="kit-check">
+            <div class="kit-dot"></div>
+            <div>
+              <div style="font-family:'Oswald',sans-serif;font-size:0.95rem;font-weight:600;text-transform:uppercase;color:var(--off-white);">JT Proflex X Mask</div>
+              <div style="font-size:0.78rem;color:var(--muted);margin-top:2px;">Full-face protection — certified for airsoft</div>
+            </div>
+          </div>
+          <div class="kit-check">
+            <div class="kit-dot"></div>
+            <div>
+              <div style="font-family:'Oswald',sans-serif;font-size:0.95rem;font-weight:600;text-transform:uppercase;color:var(--off-white);">M4-Style AEG</div>
+              <div style="font-size:0.78rem;color:var(--muted);margin-top:2px;">Automatic Electric Gun — full auto</div>
+            </div>
+          </div>
+          <div class="kit-check">
+            <div class="kit-dot"></div>
+            <div>
+              <div style="font-family:'Oswald',sans-serif;font-size:0.95rem;font-weight:600;text-transform:uppercase;color:var(--off-white);">Angle Custom Thunderstorm Drum Mag</div>
+              <div style="font-size:0.78rem;color:var(--muted);margin-top:2px;">~2000 BBs capacity — 1 full drum mag</div>
+            </div>
+          </div>
+          <div class="kit-check">
+            <div class="kit-dot"></div>
+            <div>
+              <div style="font-family:'Oswald',sans-serif;font-size:0.95rem;font-weight:600;text-transform:uppercase;color:var(--off-white);">2000 BBs</div>
+              <div style="font-size:0.78rem;color:var(--muted);margin-top:2px;">1 full drum magazine loaded</div>
+            </div>
+          </div>
+          <div class="kit-check">
+            <div class="kit-dot"></div>
+            <div>
+              <div style="font-family:'Oswald',sans-serif;font-size:0.95rem;font-weight:600;text-transform:uppercase;color:var(--off-white);">Hit Hat</div>
+              <div style="font-size:0.78rem;color:var(--muted);margin-top:2px;">Hit indicator for fair play</div>
+            </div>
+          </div>
+          <div class="kit-check" style="border-bottom:none;">
+            <div class="kit-dot-sand"></div>
+            <div>
+              <div style="font-family:'Oswald',sans-serif;font-size:0.95rem;font-weight:600;text-transform:uppercase;color:var(--sand);">+ Tracer Unit &amp; Green Tracer BBs</div>
+              <div style="font-size:0.78rem;color:var(--muted);margin-top:2px;">Night Games ONLY — included automatically</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:16px;padding:14px 18px;background:rgba(255,255,255,0.03);border:1px solid var(--olive-border);">
+          <p style="font-size:0.8rem;color:rgba(237,233,224,0.5);line-height:1.6;">
+            <strong style="color:var(--off-white);">Note:</strong> FAC does not provide clothing, coveralls, or tactical vests with rental kits. See the <a href="tips.html" style="color:var(--sand);border-bottom:1px solid rgba(196,165,123,0.3)">Tips for Beginners</a> page for what to wear.
+          </p>
+        </div>
+      </div>
+
+      <!-- Pricing -->
+      <div style="display:flex;flex-direction:column;gap:20px;">
+        <div class="slabel">Pricing</div>
+
+        <!-- Day/Night Kit -->
+        <div style="background:var(--olive-card);border:1px solid var(--olive-border);padding:28px;">
+          <div style="font-family:'Oswald',sans-serif;font-size:0.62rem;letter-spacing:0.26em;text-transform:uppercase;color:var(--sand-dim);margin-bottom:12px;">Day &amp; Night Game Kit</div>
+          <div style="display:flex;gap:24px;align-items:flex-end;margin-bottom:16px;">
+            <div>
+              <div style="font-family:'Oswald',sans-serif;font-size:2.8rem;font-weight:700;letter-spacing:-0.02em;color:var(--off-white);line-height:1;">$30</div>
+              <div style="font-family:'Oswald',sans-serif;font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--red);margin-top:4px;">Pre-booked · Save $10</div>
+            </div>
+            <div style="padding-bottom:8px;">
+              <div style="font-family:'Oswald',sans-serif;font-size:1.2rem;font-weight:600;color:rgba(237,233,224,0.4);line-height:1;">$40</div>
+              <div style="font-size:0.68rem;color:var(--muted);margin-top:2px;">day-of</div>
+            </div>
+          </div>
+          <div style="padding:10px 14px;background:rgba(209,67,42,0.07);border-left:2px solid var(--red);margin-bottom:16px;">
+            <p style="font-size:0.76rem;color:rgba(237,233,224,0.55);">Admission not included in kit price. See events for admission pricing.</p>
+          </div>
+          <a href="events.html" class="btn-red" style="width:100%;justify-content:center;">Book for an Event →</a>
+        </div>
+
+        <!-- Remote Rental -->
+        <div style="background:var(--olive-card);border:1px solid var(--olive-border);padding:28px;">
+          <div style="font-family:'Oswald',sans-serif;font-size:0.62rem;letter-spacing:0.26em;text-transform:uppercase;color:var(--sand-dim);margin-bottom:12px;">Remote Rental Kit</div>
+          <div style="font-family:'Oswald',sans-serif;font-size:2.8rem;font-weight:700;letter-spacing:-0.02em;color:var(--off-white);line-height:1;margin-bottom:4px;">$40</div>
+          <div style="font-family:'Oswald',sans-serif;font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--sand-dim);margin-bottom:12px;">Pre-book only — not available day-of</div>
+          <p style="font-size:0.8rem;color:rgba(237,233,224,0.55);margin-bottom:16px;">Must be pre-booked from the Rental Kits tab. Admission not included.</p>
+        </div>
+
+        <!-- Individual pieces -->
+        <div style="background:var(--olive-mid);border:1px solid var(--olive-border);padding:20px 24px;">
+          <div style="font-family:'Oswald',sans-serif;font-size:0.62rem;letter-spacing:0.26em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;">Individual Pieces</div>
+          <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--olive-border);">
+            <span style="font-size:0.85rem;color:rgba(237,233,224,0.7);">Rental: Mask</span>
+            <span style="font-family:'Oswald',sans-serif;font-weight:600;color:var(--off-white);">$10.00</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;padding:10px 0;">
+            <span style="font-size:0.85rem;color:rgba(237,233,224,0.7);">Rental: Tracer Unit</span>
+            <span style="font-family:'Oswald',sans-serif;font-weight:600;color:var(--off-white);">$8.70</span>
+          </div>
+          <a href="https://www.facinc.ca/s/shop" style="display:inline-flex;align-items:center;gap:6px;background:transparent;color:var(--sand);font-family:'Oswald',sans-serif;font-size:0.72rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;padding:9px 18px;border:1px solid rgba(196,165,123,0.3);clip-path:polygon(0 0,calc(100% - 6px) 0,100% 6px,100% 100%,6px 100%,0 calc(100% - 6px));transition:border-color 0.2s;margin-top:12px;width:100%;justify-content:center;" target="_blank" rel="noopener" onmouseover="this.style.borderColor='var(--sand)'" onmouseout="this.style.borderColor='rgba(196,165,123,0.3)'">Shop Individual Pieces →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING TABLE -->
+<section class="sec-mid sec-pad">
+  <div class="container">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:36px;flex-wrap:wrap;gap:16px;">
+      <div>
+        <div class="slabel">Pre-Book Now</div>
+        <h2 style="font-size:clamp(1.8rem,3vw,2.4rem);font-weight:700;letter-spacing:-0.02em;color:var(--off-white);">2026 Rental Kit Dates</h2>
+      </div>
+      <div style="padding:12px 18px;background:rgba(209,67,42,0.08);border:1px solid rgba(209,67,42,0.2);">
+        <p style="font-family:'Oswald',sans-serif;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--red);">Pre-booking closes 11:55pm the night before</p>
+      </div>
+    </div>
+
+    <div style="background:var(--olive-card);border:1px solid var(--olive-border);overflow:hidden;">
+      <table class="booking-table">
+        <thead>
+          <tr>
+            <th>Event</th>
+            <th>Date</th>
+            <th>Price (Pre-booked)</th>
+            <th style="text-align:right;padding-right:24px;">Book</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="event-name-cell">Night Games</td><td>June 2, 2026</td><td class="price-cell">CAD $43.48</td><td style="text-align:right;padding-right:16px;"><a href="https://www.facinc.ca/product/rental-admission-june-2nd-2026-night-games/S3N7RBOQKPQPRMDNPTIR4D45" class="btn-red-sm" target="_blank" rel="noopener" style="width:auto;padding:8px 16px;">Book →</a></td></tr>
+          <tr><td class="event-name-cell">Gold Rush</td><td>June 6, 2026</td><td class="price-cell">CAD $43.48</td><td style="text-align:right;padding-right:16px;"><a href="https://www.facinc.ca/product/rental-admission-june-6th-2026-gold-rush/KRL7YXDDPMQAVVCTEMMY76GX" class="btn-red-sm" target="_blank" rel="noopener" style="width:auto;padding:8px 16px;">Book →</a></td></tr>
+          <tr><td class="event-name-cell">Night Games</td><td>June 6, 2026</td><td class="price-cell">CAD $43.48</td><td style="text-align:right;padding-right:16px;"><a href="https://www.facinc.ca/product/rental-admission-june-6th-2026-night-games/QTA4WAUDOV3RLWGR5DFTJMSB" class="btn-red-sm" target="_blank" rel="noopener" style="width:auto;padding:8px 16px;">Book →</a></td></tr>
+          <tr><td class="event-name-cell">Night Games</td><td>June 12, 2026</td><td class="price-cell">CAD $43.48</td><td style="text-align:right;padding-right:16px;"><a href="https://www.facinc.ca/product/rental-admission-june-12th-2026-night-games/6EAXIBOHTPWWGZ6CCDVD5PUH" class="btn-red-sm" target="_blank" rel="noopener" style="width:auto;padding:8px 16px;">Book →</a></td></tr>
+          <tr><td class="event-name-cell">Beginners Day</td><td>June 13, 2026</td><td class="price-cell">CAD $43.48</td><td style="text-align:right;padding-right:16px;"><a href="https://www.facinc.ca/product/rental-admission-june-13th-2026-beginners-day/HDMCOGW2GLP4XDLDOIRLDYPJ" class="btn-red-sm" target="_blank" rel="noopener" style="width:auto;padding:8px 16px;">Book →</a></td></tr>
+          <tr><td class="event-name-cell">Night Games</td><td>June 17, 2026</td><td class="price-cell">CAD $43.48</td><td style="text-align:right;padding-right:16px;"><a href="https://www.facinc.ca/product/rental-admission-june-17th-2026-night-games/QTA4WAUDOV3RLWGR5DFTJMSB" class="btn-red-sm" target="_blank" rel="noopener" style="width:auto;padding:8px 16px;">Book →</a></td></tr>
+          <tr class="special-row"><td class="event-name-cell">Father's Day Special</td><td>June 20, 2026</td><td class="price-cell">CAD $60.87</td><td style="text-align:right;padding-right:16px;"><a href="https://www.facinc.ca/product/rental-admission-june-20th-2026-father-s-day-game/HUT7VM7AWX3QUOZNWER2HQYP" class="btn-red-sm" target="_blank" rel="noopener" style="width:auto;padding:8px 16px;">Book →</a></td></tr>
+          <tr><td class="event-name-cell">Father's Day Game</td><td>June 20, 2026</td><td class="price-cell">CAD $43.48 <span style="font-size:0.65rem;color:var(--red);letter-spacing:0.1em;text-transform:uppercase;font-family:'Oswald',sans-serif;">Low stock</span></td><td style="text-align:right;padding-right:16px;"><a href="https://www.facinc.ca/product/rental-admission-june-20th-2026-father-s-day-game/HUT7VM7AWX3QUOZNWER2HQYP" class="btn-red-sm" target="_blank" rel="noopener" style="width:auto;padding:8px 16px;">Book →</a></td></tr>
+          <tr><td class="event-name-cell">Night Games</td><td>June 24, 2026</td><td class="price-cell">CAD $43.48</td><td style="text-align:right;padding-right:16px;"><a href="https://www.facinc.ca/product/rental-admission-june-24th-2026-night-games/74IHVARCEFDJC4VO6ICGWJYG" class="btn-red-sm" target="_blank" rel="noopener" style="width:auto;padding:8px 16px;">Book →</a></td></tr>
+          <tr><td class="event-name-cell">Night Games</td><td>June 30, 2026</td><td class="price-cell">CAD $43.48</td><td style="text-align:right;padding-right:16px;"><a href="https://www.facinc.ca/product/rental-admission-june-30th-2026-night-games/S7UOHFLAY27LJNJG5GUTJ6LM" class="btn-red-sm" target="_blank" rel="noopener" style="width:auto;padding:8px 16px;">Book →</a></td></tr>
+          <tr><td class="event-name-cell">Tri-Barrel Tournament</td><td>July 11, 2026</td><td class="price-cell">CAD $43.48</td><td style="text-align:right;padding-right:16px;"><a href="https://www.facinc.ca/product/rental-admission-july-11th-2026-tri-barrel-tournament/D7TM4OMOJYWMJJGXDAW6RHFN" class="btn-red-sm" target="_blank" rel="noopener" style="width:auto;padding:8px 16px;">Book →</a></td></tr>
+          <tr><td class="event-name-cell">Turkey Shoot</td><td>Oct 3, 2026</td><td class="price-cell">CAD $43.48</td><td style="text-align:right;padding-right:16px;"><a href="https://www.facinc.ca/product/rental-admission-oct-3rd-2026-turkey-shoot/LYUX47Y5RMMFBDQTUG3NS64P" class="btn-red-sm" target="_blank" rel="noopener" style="width:auto;padding:8px 16px;">Book →</a></td></tr>
+          <tr class="special-row"><td class="event-name-cell">Trigger-Treat 2026</td><td>Oct 31, 2026</td><td class="price-cell">CAD $47.83</td><td style="text-align:right;padding-right:16px;"><a href="https://www.facinc.ca/product/rental-admission-oct-31st-2026-trigger-treat-2026/S7UOHFLAY27LJNJG5GUTJ6LM" class="btn-red-sm" target="_blank" rel="noopener" style="width:auto;padding:8px 16px;">Book →</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="margin-top:16px;padding:14px 20px;background:var(--olive-card);border:1px solid var(--olive-border);display:flex;align-items:center;gap:12px;">
+      <span style="font-family:'Oswald',sans-serif;font-size:0.65rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--red);">⚠</span>
+      <p style="font-size:0.8rem;color:rgba(237,233,224,0.5);">All Rental + Admission bundles include the full kit and event admission. <strong style="color:var(--off-white);">Op: Lion's Den</strong> (June 27 &amp; Sept 5) has no rentals available.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div><img src="Assets/Fredericton Airsoft Company Logo.JPG" alt="FAC Logo" style="height:60px;width:auto;object-fit:contain;margin-bottom:16px;"><p style="font-size:0.82rem;color:rgba(237,233,224,0.4);line-height:1.6;max-width:280px;">Real People. Real Game. Real Community.</p></div>
+      <div>
+        <div style="font-family:'Oswald',sans-serif;font-size:0.65rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;">Navigation</div>
+        <a href="index.html" class="footer-link">Home</a><a href="the-field.html" class="footer-link">The Field</a><a href="tips.html" class="footer-link">Tips for Beginners</a><a href="events.html" class="footer-link">Events</a><a href="rental-kits.html" class="footer-link">Rental Kits</a><a href="shop.html" class="footer-link">Shop</a><a href="private-events.html" class="footer-link">Private Events</a>
+      </div>
+      <div>
+        <div style="font-family:'Oswald',sans-serif;font-size:0.65rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;">Contact</div>
+        <a href="tel:15062613689" class="footer-link">1-506-261-3689</a><a href="mailto:frederictonairsoftcompany@gmail.com" class="footer-link" style="word-break:break-all;">frederictonairsoftcompany@gmail.com</a><a href="https://www.instagram.com/frederictonairsoftcompany" class="footer-link" target="_blank">@frederictonairsoftcompany</a>
+      </div>
+    </div>
+    <div class="footer-bottom"><p style="font-size:0.72rem;color:var(--muted);">© 2026 Fredericton Airsoft Company Inc.</p><p style="font-size:0.68rem;color:var(--muted);font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:0.1em;">Must be 10+ to play</p></div>
+  </div>
+  <div class="rainbow-stripe"></div>
+</footer>
+<script>
+  document.getElementById('close-menu').addEventListener('click',()=>document.getElementById('mobile-menu').classList.remove('open'));
+  document.getElementById('mobile-menu').querySelectorAll('a').forEach(l=>l.addEventListener('click',()=>document.getElementById('mobile-menu').classList.remove('open')));
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')document.getElementById('mobile-menu').classList.remove('open')});
+</script>
+</body>
+</html>

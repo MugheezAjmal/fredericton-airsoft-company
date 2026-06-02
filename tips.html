@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tips for Beginners — Fredericton Airsoft Company Inc.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --red:#d1432a;--red-dark:#a8341f;--red-glow:rgba(209,67,42,0.2);
+      --olive-dark:#0a0c07;--olive-base:#12160c;--olive-mid:#1a2210;
+      --olive-card:#202a12;--olive-border:#323f20;--olive-hover:#46582e;
+      --sand:#c4a57b;--sand-dim:#8a7258;--off-white:#ede9e0;--muted:#5a5a4a;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:'Inter',sans-serif;background:var(--olive-dark);color:var(--off-white);line-height:1.75;overflow-x:hidden}
+    h1,h2,h3,h4{font-family:'Oswald',sans-serif;text-transform:uppercase;line-height:1.05}
+    a{text-decoration:none;color:inherit}
+    .container{max-width:1280px;margin:0 auto;padding:0 32px}
+
+    nav{position:sticky;top:0;z-index:50;height:64px;background:rgba(10,12,7,0.94);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.05)}
+    .nav-inner{height:100%;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .nav-logo{height:44px;width:auto;object-fit:contain;flex-shrink:0;transition:opacity 0.2s}
+    .nav-logo:hover{opacity:0.85}
+    .nav-links{display:flex;align-items:center;gap:24px;flex:1;justify-content:center}
+    .nav-link{font-family:'Oswald',sans-serif;font-size:0.75rem;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:rgba(237,233,224,0.6);position:relative;padding:4px 0;transition:color 0.2s;white-space:nowrap}
+    .nav-link::after{content:'';position:absolute;bottom:-1px;left:0;width:0;height:1px;background:var(--red);transition:width 0.25s ease}
+    .nav-link:hover,.nav-link.active{color:var(--off-white)}
+    .nav-link:hover::after,.nav-link.active::after{width:100%}
+    .btn-nav{font-family:'Oswald',sans-serif;font-size:0.72rem;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;background:var(--red);color:#fff;padding:9px 20px;white-space:nowrap;flex-shrink:0;clip-path:polygon(0 0,calc(100% - 6px) 0,100% 6px,100% 100%,6px 100%,0 calc(100% - 6px));transition:background 0.2s,transform 0.15s cubic-bezier(0.34,1.56,0.64,1)}
+    .btn-nav:hover{background:var(--red-dark);transform:translateY(-1px)}
+    .hamburger{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:6px}
+    .hamburger span{display:block;width:22px;height:1.5px;background:var(--off-white)}
+    #mobile-menu{display:none;position:fixed;inset:0;z-index:99;background:var(--olive-dark);flex-direction:column;align-items:center;justify-content:center;gap:32px}
+    #mobile-menu.open{display:flex}
+    .mob-link{font-family:'Oswald',sans-serif;font-size:2rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--off-white);transition:color 0.15s}
+    .mob-link:hover{color:var(--red)}
+    #close-menu{position:absolute;top:20px;right:28px;background:none;border:none;color:var(--off-white);font-size:1.5rem;cursor:pointer;font-family:'Oswald',sans-serif}
+
+    .btn-red{display:inline-flex;align-items:center;gap:8px;background:var(--red);color:#fff;font-family:'Oswald',sans-serif;font-size:0.82rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;padding:13px 28px;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px));transition:background 0.2s,transform 0.15s cubic-bezier(0.34,1.56,0.64,1);cursor:pointer;border:none}
+    .btn-red:hover{background:var(--red-dark);transform:translateY(-2px)}
+
+    .slabel{font-family:'Oswald',sans-serif;font-size:0.65rem;font-weight:500;letter-spacing:0.32em;text-transform:uppercase;color:var(--red);display:flex;align-items:center;gap:10px;margin-bottom:16px}
+    .slabel::before{content:'';width:24px;height:1px;background:var(--red);flex-shrink:0}
+
+    .page-hero{position:relative;min-height:44vh;background:radial-gradient(ellipse 100% 100% at 50% 0%,rgba(38,54,18,0.55) 0%,transparent 60%),var(--olive-dark);display:flex;align-items:flex-end;overflow:hidden}
+    .page-hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.012) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.012) 1px,transparent 1px);background-size:56px 56px}
+    .page-hero-content{position:relative;z-index:2;padding:64px 0;width:100%}
+
+    .sec-pad{padding:96px 0}
+    .sec-pad-sm{padding:64px 0}
+    .sec-dark{background:var(--olive-dark)}
+    .sec-base{background:var(--olive-base)}
+    .sec-mid{background:var(--olive-mid)}
+
+    /* TIP CARDS */
+    .tip-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+    .tip-card{background:var(--olive-card);border:1px solid var(--olive-border);padding:32px;position:relative;overflow:hidden;transition:border-color 0.2s,transform 0.2s cubic-bezier(0.34,1.56,0.64,1)}
+    .tip-card:hover{border-color:var(--olive-hover);transform:translateY(-4px)}
+    .tip-card::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform 0.3s ease}
+    .tip-card:hover::after{transform:scaleX(1)}
+
+    .tip-icon{width:52px;height:52px;background:rgba(209,67,42,0.1);border:1px solid rgba(209,67,42,0.25);display:flex;align-items:center;justify-content:center;margin-bottom:20px;clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)}
+
+    .tip-rule{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--olive-border);font-size:0.85rem;color:rgba(237,233,224,0.7)}
+    .tip-rule:last-child{border-bottom:none}
+    .tip-rule-dot{flex-shrink:0;width:6px;height:6px;background:var(--red);margin-top:8px;clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)}
+    .tip-rule-no{flex-shrink:0;width:6px;height:6px;background:var(--sand);margin-top:8px;clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)}
+
+    /* RULES */
+    .rule-card{background:rgba(209,67,42,0.06);border:1px solid rgba(209,67,42,0.2);padding:24px 28px;border-left:3px solid var(--red)}
+    .rules-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+
+    /* PERKS */
+    .perk-strip{display:flex;gap:0}
+    .perk-item{flex:1;padding:28px 24px;text-align:center;border-right:1px solid var(--olive-border)}
+    .perk-item:last-child{border-right:none}
+
+    footer{background:var(--olive-base);border-top:1px solid var(--olive-border)}
+    .footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1.2fr;gap:64px;padding:64px 0 48px}
+    .footer-link{font-family:'Oswald',sans-serif;font-size:0.75rem;font-weight:400;letter-spacing:0.12em;text-transform:uppercase;color:rgba(237,233,224,0.5);display:block;padding:5px 0;transition:color 0.2s}
+    .footer-link:hover{color:var(--off-white)}
+    .footer-bottom{border-top:1px solid var(--olive-border);padding:20px 0;display:flex;justify-content:space-between;align-items:center}
+    .rainbow-stripe{height:4px;background:linear-gradient(to right,#e40303 0%,#e40303 16.66%,#ff8c00 16.66%,#ff8c00 33.33%,#ffed00 33.33%,#ffed00 50%,#008026 50%,#008026 66.66%,#004dff 66.66%,#004dff 83.33%,#750787 83.33%,#750787 100%)}
+
+    @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+    .fade-up{animation:fadeUp 0.7s cubic-bezier(0.34,1.56,0.64,1) both}
+    .d1{animation-delay:.05s}.d2{animation-delay:.15s}.d3{animation-delay:.25s}
+
+    @media(max-width:900px){.tip-grid,.rules-grid{grid-template-columns:1fr}.perk-strip{flex-direction:column}.perk-item{border-right:none;border-bottom:1px solid var(--olive-border)}.perk-item:last-child{border-bottom:none}}
+    @media(max-width:768px){.nav-links,.btn-nav{display:none}.hamburger{display:flex}.footer-grid{grid-template-columns:1fr;gap:32px}}
+  </style>
+</head>
+<body>
+
+<div id="mobile-menu" role="dialog">
+  <button id="close-menu" onclick="document.getElementById('mobile-menu').classList.remove('open')">✕ CLOSE</button>
+  <a href="index.html" class="mob-link">Home</a><a href="the-field.html" class="mob-link">Field</a>
+  <a href="tips.html" class="mob-link">Tips</a><a href="events.html" class="mob-link">Events</a>
+  <a href="rental-kits.html" class="mob-link">Rental Kits</a><a href="shop.html" class="mob-link">Shop</a>
+  <a href="private-events.html" class="mob-link">Private Events</a>
+</div>
+
+<nav>
+  <div class="container nav-inner">
+    <a href="index.html"><img src="Assets/Fredericton Airsoft Company Logo.JPG" alt="FAC Logo" class="nav-logo"></a>
+    <div class="nav-links">
+      <a href="index.html" class="nav-link">Home</a><a href="the-field.html" class="nav-link">Field</a>
+      <a href="tips.html" class="nav-link active">Tips</a><a href="events.html" class="nav-link">Events</a>
+      <a href="rental-kits.html" class="nav-link">Rental Kits</a><a href="shop.html" class="nav-link">Shop</a>
+      <a href="private-events.html" class="nav-link">Private Events</a>
+    </div>
+    <a href="https://www.facinc.ca/s/shop" class="btn-nav" target="_blank" rel="noopener">Shop Now →</a>
+    <button class="hamburger" onclick="document.getElementById('mobile-menu').classList.add('open')"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-grid"></div>
+  <div class="page-hero-content">
+    <div class="container">
+      <div class="slabel fade-up d1">First Time?</div>
+      <h1 style="font-size:clamp(2.5rem,6vw,5rem);font-weight:700;letter-spacing:-0.02em;color:var(--off-white);max-width:700px;" class="fade-up d2">
+        Before You<br><span style="color:var(--sand);">Hit the Field</span>
+      </h1>
+      <p style="color:rgba(237,233,224,0.55);font-size:0.9rem;margin-top:14px;max-width:500px;" class="fade-up d3">
+        Everything you need to know before your first game at FAC.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- TIP CARDS -->
+<section class="sec-dark sec-pad">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:48px;">
+      <div class="slabel" style="justify-content:center;">Gear Guide</div>
+      <h2 style="font-size:clamp(1.8rem,3vw,2.6rem);font-weight:700;letter-spacing:-0.02em;color:var(--off-white);">What to Wear</h2>
+    </div>
+
+    <div class="tip-grid">
+      <!-- Clothing -->
+      <div class="tip-card">
+        <div class="tip-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2"><path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.57a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.57a2 2 0 0 0-1.34-2.23z"/></svg>
+        </div>
+        <div style="font-family:'Oswald',sans-serif;font-size:0.62rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--red);margin-bottom:8px;">Category 01</div>
+        <h3 style="font-size:1.4rem;font-weight:700;letter-spacing:-0.01em;color:var(--off-white);margin-bottom:16px;">Clothing</h3>
+
+        <div class="tip-rule"><div class="tip-rule-dot"></div><span><strong style="color:var(--off-white);">Best:</strong> Any camouflage pattern</span></div>
+        <div class="tip-rule"><div class="tip-rule-dot"></div><span><strong style="color:var(--off-white);">Good:</strong> Dark naturals — black, brown, or green</span></div>
+        <div class="tip-rule"><div class="tip-rule-dot"></div><span><strong style="color:var(--off-white);">Minimum:</strong> Long pants + long-sleeved shirt</span></div>
+        <div class="tip-rule"><div class="tip-rule-no"></div><span style="color:rgba(237,233,224,0.55);">Shorts are <strong style="color:var(--off-white);">discouraged</strong></span></div>
+        <div class="tip-rule"><div class="tip-rule-dot"></div><span>Hats, head wraps &amp; gloves are encouraged</span></div>
+        <div class="tip-rule" style="border-bottom:none;">
+          <div style="flex-shrink:0;width:6px;height:6px;background:rgba(209,67,42,0.8);margin-top:8px;clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)"></div>
+          <span style="color:rgba(209,67,42,0.9);">Avoid <strong>orange, yellow or red</strong> — reserved for Game Masters &amp; hit indicators</span>
+        </div>
+
+        <div style="margin-top:16px;padding:12px 14px;background:rgba(255,255,255,0.03);border:1px solid var(--olive-border);border-left:2px solid var(--sand-dim);">
+          <p style="font-size:0.76rem;color:rgba(237,233,224,0.5);line-height:1.5;">FAC does <strong style="color:var(--off-white);">not</strong> provide clothing, coveralls, or tactical vests/gear with rental kits.</p>
+        </div>
+      </div>
+
+      <!-- Footwear -->
+      <div class="tip-card">
+        <div class="tip-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg>
+        </div>
+        <div style="font-family:'Oswald',sans-serif;font-size:0.62rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--red);margin-bottom:8px;">Category 02</div>
+        <h3 style="font-size:1.4rem;font-weight:700;letter-spacing:-0.01em;color:var(--off-white);margin-bottom:16px;">Footwear</h3>
+
+        <div class="tip-rule"><div class="tip-rule-dot"></div><span><strong style="color:var(--off-white);">Recommended:</strong> Hiking boots</span></div>
+        <div class="tip-rule"><div class="tip-rule-dot"></div><span><strong style="color:var(--off-white);">Recommended:</strong> Combat or rubber boots</span></div>
+        <div class="tip-rule"><div class="tip-rule-dot"></div><span>Any footwear with good ankle support</span></div>
+        <div class="tip-rule"><div class="tip-rule-no"></div><span style="color:rgba(237,233,224,0.55);">Running shoes &amp; cleats allowed if no boots</span></div>
+
+        <div style="margin-top:24px;padding:16px 18px;background:rgba(209,67,42,0.08);border:1px solid rgba(209,67,42,0.25);">
+          <div style="font-family:'Oswald',sans-serif;font-size:0.65rem;letter-spacing:0.24em;text-transform:uppercase;color:var(--red);margin-bottom:6px;">Strictly Prohibited</div>
+          <div style="font-family:'Oswald',sans-serif;font-size:1.8rem;font-weight:700;color:var(--off-white);letter-spacing:0.02em;">NO SANDALS</div>
+          <p style="font-size:0.76rem;color:rgba(237,233,224,0.5);margin-top:4px;">The field is a woodlot. Protect your feet.</p>
+        </div>
+
+        <div style="margin-top:16px;padding:12px 14px;background:rgba(255,255,255,0.03);border:1px solid var(--olive-border);">
+          <p style="font-size:0.76rem;color:rgba(237,233,224,0.5);line-height:1.5;">The field is uneven woodland terrain — ankle support is critical for safety.</p>
+        </div>
+      </div>
+
+      <!-- Eye Wear -->
+      <div class="tip-card">
+        <div class="tip-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2"><circle cx="12" cy="12" r="2"/><path d="M22 12c-2.667 4.667-6 7-10 7s-7.333-2.333-10-7c2.667-4.667 6-7 10-7s7.333 2.333 10 7"/></svg>
+        </div>
+        <div style="font-family:'Oswald',sans-serif;font-size:0.62rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--red);margin-bottom:8px;">Category 03</div>
+        <h3 style="font-size:1.4rem;font-weight:700;letter-spacing:-0.01em;color:var(--off-white);margin-bottom:16px;">Eye Wear</h3>
+
+        <div class="tip-rule"><div class="tip-rule-dot"></div><span>Rental masks are provided with every kit</span></div>
+        <div class="tip-rule"><div class="tip-rule-dot"></div><span>Wear <strong style="color:var(--off-white);">contacts</strong> whenever possible if you have prescription lenses</span></div>
+        <div class="tip-rule"><div class="tip-rule-dot"></div><span>Rental masks fit most <strong style="color:var(--off-white);">small-medium</strong> prescription frames</span></div>
+        <div class="tip-rule" style="border-bottom:none;"><div class="tip-rule-dot"></div><span>Bring <strong style="color:var(--off-white);">anti-fog</strong> spray for prescription lenses</span></div>
+
+        <div style="margin-top:20px;padding:14px 16px;background:rgba(255,255,255,0.03);border:1px solid var(--olive-border);border-left:2px solid var(--olive-hover);">
+          <p style="font-size:0.76rem;color:rgba(237,233,224,0.5);line-height:1.5;">Eye protection is mandatory at all times on the field. The JT Proflex X mask is included in all rental kits.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RULES CALLOUT -->
+<section class="sec-mid sec-pad-sm">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:36px;">
+      <div class="slabel" style="justify-content:center;">Field Rules</div>
+      <h2 style="font-size:clamp(1.6rem,2.5vw,2.2rem);font-weight:700;letter-spacing:-0.02em;color:var(--off-white);">Know Before You Go</h2>
+    </div>
+
+    <div class="rules-grid">
+      <!-- Age -->
+      <div class="rule-card">
+        <div style="font-family:'Oswald',sans-serif;font-size:0.62rem;letter-spacing:0.26em;text-transform:uppercase;color:var(--red);margin-bottom:10px;">Age Requirement</div>
+        <div style="font-family:'Oswald',sans-serif;font-size:2rem;font-weight:700;color:var(--off-white);line-height:1;margin-bottom:8px;">10+</div>
+        <p style="font-size:0.82rem;color:rgba(237,233,224,0.6);line-height:1.65;">Must be 10 years or older to participate in any FAC event.</p>
+      </div>
+
+      <!-- Under 19 -->
+      <div class="rule-card">
+        <div style="font-family:'Oswald',sans-serif;font-size:0.62rem;letter-spacing:0.26em;text-transform:uppercase;color:var(--red);margin-bottom:10px;">Under 19 Waiver</div>
+        <div style="font-family:'Oswald',sans-serif;font-size:1.1rem;font-weight:600;text-transform:uppercase;color:var(--off-white);line-height:1.2;margin-bottom:8px;">Parent / Guardian Signature Required</div>
+        <p style="font-size:0.82rem;color:rgba(237,233,224,0.6);line-height:1.65;">If a parent isn't driving their child to the event, the waiver must be pre-signed and sent with the player — <strong style="color:var(--off-white);">or they won't be allowed to play.</strong></p>
+        <a href="https://www.facinc.ca" class="btn-red" style="margin-top:14px;font-size:0.72rem;padding:10px 18px;" target="_blank" rel="noopener">Download Waiver ↓</a>
+      </div>
+
+      <!-- Payment -->
+      <div class="rule-card">
+        <div style="font-family:'Oswald',sans-serif;font-size:0.62rem;letter-spacing:0.26em;text-transform:uppercase;color:var(--red);margin-bottom:10px;">Payment</div>
+        <div style="font-family:'Oswald',sans-serif;font-size:1.6rem;font-weight:700;color:var(--off-white);line-height:1;margin-bottom:8px;">NO CASH</div>
+        <p style="font-size:0.82rem;color:rgba(237,233,224,0.6);line-height:1.65;">Debit, Credit Card, Apple Pay, and Google Pay accepted at the event. We do not accept cash.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PERKS STRIP -->
+<section class="sec-dark sec-pad-sm" style="border-top:1px solid var(--olive-border);border-bottom:1px solid var(--olive-border);">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:36px;">
+      <div class="slabel" style="justify-content:center;">Included Free</div>
+      <h2 style="font-size:clamp(1.4rem,2.5vw,2rem);font-weight:700;letter-spacing:-0.02em;color:var(--off-white);">What's Always Provided</h2>
+    </div>
+    <div class="perk-strip">
+      <div class="perk-item">
+        <div style="font-size:1.6rem;margin-bottom:8px;color:var(--red);">💧</div>
+        <div style="font-family:'Oswald',sans-serif;font-size:0.88rem;font-weight:600;text-transform:uppercase;color:var(--off-white);margin-bottom:4px;">Bottled Water</div>
+        <div style="font-size:0.78rem;color:var(--muted);">Included at every public &amp; private event</div>
+      </div>
+      <div class="perk-item">
+        <div style="font-size:1.6rem;margin-bottom:8px;color:var(--red);">🔫</div>
+        <div style="font-family:'Oswald',sans-serif;font-size:0.88rem;font-weight:600;text-transform:uppercase;color:var(--off-white);margin-bottom:4px;">Free HPA Fills</div>
+        <div style="font-size:0.78rem;color:var(--muted);">High-pressure air fills available on-site</div>
+      </div>
+      <div class="perk-item">
+        <div style="font-size:1.6rem;margin-bottom:8px;color:var(--red);">🛒</div>
+        <div style="font-family:'Oswald',sans-serif;font-size:0.88rem;font-weight:600;text-transform:uppercase;color:var(--off-white);margin-bottom:4px;">Mobile Shop</div>
+        <div style="font-size:0.78rem;color:var(--muted);">BBs, gas &amp; grenades at the field</div>
+      </div>
+      <div class="perk-item">
+        <div style="font-size:1.6rem;margin-bottom:8px;color:var(--red);">🚻</div>
+        <div style="font-family:'Oswald',sans-serif;font-size:0.88rem;font-weight:600;text-transform:uppercase;color:var(--off-white);margin-bottom:4px;">Facilities</div>
+        <div style="font-size:0.78rem;color:var(--muted);">2 Port-a-Potties on site. No running water.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="sec-base sec-pad-sm">
+  <div class="container" style="text-align:center;">
+    <div class="slabel" style="justify-content:center;margin-bottom:20px;">Ready?</div>
+    <h2 style="font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:700;letter-spacing:-0.02em;color:var(--off-white);margin-bottom:14px;">See You on the Field</h2>
+    <p style="color:rgba(237,233,224,0.5);font-size:0.88rem;max-width:480px;margin:0 auto 32px;">Find an upcoming event and pre-register to save $5 on your admission.</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <a href="events.html" class="btn-red">Find an Event →</a>
+      <a href="rental-kits.html" style="display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--off-white);font-family:'Oswald',sans-serif;font-size:0.82rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;padding:12px 28px;border:1px solid rgba(237,233,224,0.28);clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px));transition:border-color 0.2s,background 0.2s,transform 0.15s cubic-bezier(0.34,1.56,0.64,1)" onmouseover="this.style.background='rgba(255,255,255,0.05)'" onmouseout="this.style.background='transparent'">Book Rental Kit →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <img src="Assets/Fredericton Airsoft Company Logo.JPG" alt="FAC Logo" style="height:60px;width:auto;object-fit:contain;margin-bottom:16px;">
+        <p style="font-size:0.82rem;color:rgba(237,233,224,0.4);line-height:1.6;max-width:280px;">Real People. Real Game. Real Community.</p>
+      </div>
+      <div>
+        <div style="font-family:'Oswald',sans-serif;font-size:0.65rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;">Navigation</div>
+        <a href="index.html" class="footer-link">Home</a><a href="the-field.html" class="footer-link">The Field</a>
+        <a href="tips.html" class="footer-link">Tips for Beginners</a><a href="events.html" class="footer-link">Events</a>
+        <a href="rental-kits.html" class="footer-link">Rental Kits</a><a href="shop.html" class="footer-link">Shop</a>
+        <a href="private-events.html" class="footer-link">Private Events</a>
+      </div>
+      <div>
+        <div style="font-family:'Oswald',sans-serif;font-size:0.65rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;">Contact</div>
+        <a href="tel:15062613689" class="footer-link">1-506-261-3689</a>
+        <a href="mailto:frederictonairsoftcompany@gmail.com" class="footer-link" style="word-break:break-all;">frederictonairsoftcompany@gmail.com</a>
+        <a href="https://www.instagram.com/frederictonairsoftcompany" class="footer-link" target="_blank">@frederictonairsoftcompany</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p style="font-size:0.72rem;color:var(--muted);">© 2026 Fredericton Airsoft Company Inc.</p>
+      <p style="font-size:0.68rem;color:var(--muted);font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:0.1em;">Must be 10+ to play</p>
+    </div>
+  </div>
+  <div class="rainbow-stripe"></div>
+</footer>
+<script>
+  document.getElementById('close-menu').addEventListener('click',()=>document.getElementById('mobile-menu').classList.remove('open'));
+  document.getElementById('mobile-menu').querySelectorAll('a').forEach(l=>l.addEventListener('click',()=>document.getElementById('mobile-menu').classList.remove('open')));
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')document.getElementById('mobile-menu').classList.remove('open')});
+</script>
+</body>
+</html>
