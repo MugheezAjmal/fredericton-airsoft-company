@@ -905,6 +905,9 @@
     .d6 { animation-delay: 0.55s; }
 
     /* ─── RESPONSIVE ─── */
+    /* ─── RENTAL KITS GRID ─── */
+    .rental-kits-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; }
+
     @media (max-width: 1100px) {
       .events-scroll { grid-template-columns: repeat(3, 1fr); }
     }
@@ -927,12 +930,14 @@
       .stat-item { flex: 0 0 50%; border-right: none; border-bottom: 1px solid var(--olive-border); }
       .stat-item:nth-child(1), .stat-item:nth-child(3) { border-right: 1px solid var(--olive-border); }
       .stat-item:nth-child(3), .stat-item:nth-child(4) { border-bottom: none; }
+      .rental-kits-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 520px) {
       .events-scroll { grid-template-columns: 1fr; }
       .shop-grid { grid-template-columns: 1fr; }
       .container { padding: 0 20px; }
       .sec-pad { padding: 64px 0; }
+      .footer-bottom { flex-wrap: wrap; justify-content: center; gap: 6px; }
     }
   </style>
 </head>
@@ -1098,7 +1103,7 @@
       </p>
     </div>
 
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:32px; align-items:start;">
+    <div class="rental-kits-grid">
       <!-- Kit Contents -->
       <div class="kit-card" style="padding:32px;">
         <div class="slabel" style="margin-bottom:20px;">Kit Includes</div>
