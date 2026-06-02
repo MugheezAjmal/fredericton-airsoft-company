@@ -77,8 +77,14 @@
     .fade-up{animation:fadeUp 0.7s cubic-bezier(0.34,1.56,0.64,1) both}
     .d1{animation-delay:.05s}.d2{animation-delay:.15s}.d3{animation-delay:.25s}.d4{animation-delay:.35s}
 
+    /* ─── RESPONSIVE GRIDS ─── */
+    .game-types-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 900px; margin: 0 auto; }
+    .booking-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 64px; align-items: start; }
+    .form-row-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
     @media(max-width:900px){.hero-photo{display:none}.features-grid{grid-template-columns:1fr}}
-    @media(max-width:768px){.nav-links,.btn-nav{display:none}.hamburger{display:flex}.footer-grid{grid-template-columns:1fr;gap:32px}}
+    @media(max-width:768px){.nav-links,.btn-nav{display:none}.hamburger{display:flex}.footer-grid{grid-template-columns:1fr;gap:32px}.game-types-grid,.booking-grid{grid-template-columns:1fr;gap:40px}}
+    @media(max-width:520px){.container{padding:0 20px}.sec-pad{padding:64px 0}.form-row-grid{grid-template-columns:1fr}.footer-bottom{flex-wrap:wrap;justify-content:center;gap:6px}}
   </style>
 </head>
 <body>
@@ -206,7 +212,7 @@
       <div class="slabel" style="justify-content:center;">Game Options</div>
       <h2 style="font-size:clamp(1.6rem,2.5vw,2.2rem);font-weight:700;letter-spacing:-0.02em;color:var(--off-white);">Choose Your Game Type</h2>
     </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:900px;margin:0 auto;">
+    <div class="game-types-grid">
       <div style="background:var(--olive-card);border:1px solid var(--olive-border);padding:32px;position:relative;overflow:hidden;">
         <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--red);"></div>
         <div style="font-family:'Oswald',sans-serif;font-size:0.62rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--red);margin-bottom:12px;">Primary Option</div>
@@ -232,7 +238,7 @@
 <!-- BOOKING FORM + CONTACT -->
 <section class="sec-dark sec-pad" id="booking-form">
   <div class="container">
-    <div style="display:grid;grid-template-columns:1.2fr 0.8fr;gap:64px;align-items:start;">
+    <div class="booking-grid">
       <!-- Form -->
       <div>
         <div class="slabel">Request a Booking</div>
@@ -240,15 +246,15 @@
         <p style="color:rgba(237,233,224,0.5);font-size:0.85rem;margin-bottom:32px;line-height:1.65;">Fill out the form below and we'll get back to you with availability and pricing. You can also reach us directly by phone, email, or social media.</p>
 
         <form action="mailto:frederictonairsoftcompany@gmail.com" method="POST" enctype="text/plain" style="display:flex;flex-direction:column;gap:14px;">
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+          <div class="form-row-grid">
             <input type="text" name="name" placeholder="Full Name" class="form-field" required>
             <input type="email" name="email" placeholder="Email Address" class="form-field" required>
           </div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+          <div class="form-row-grid">
             <input type="tel" name="phone" placeholder="Phone Number" class="form-field">
             <input type="date" name="date" class="form-field" style="color-scheme:dark;">
           </div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+          <div class="form-row-grid">
             <input type="number" name="group_size" placeholder="Group size (# of players)" class="form-field" min="4">
             <select name="game_type" class="form-field" style="cursor:pointer;">
               <option value="" disabled selected style="color:var(--muted);">Game type</option>
