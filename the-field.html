@@ -129,6 +129,9 @@
       .downloads-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 520px) {
+      .stats-inner { display: block; }
+      .stat-item { border-right: none; border-bottom: 1px solid var(--olive-border); }
+      .stat-item:last-child { border-bottom: none; }
       .container { padding: 0 20px; }
       .sec-pad { padding: 64px 0; }
       .footer-bottom { flex-wrap: wrap; justify-content: center; gap: 6px; }
